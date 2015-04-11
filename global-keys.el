@@ -50,6 +50,9 @@
 ;; ;; there seems to be a problem with lockcaps-mode...
 ;; (define-key global-map (kbd "H-f") 'lockcaps-mode)
 
+(define-key global-map (kbd "H-s H-j") 
+  '(lambda () (interactive) (insert-chars '("a" "b"))))
+
 
 ;;; ALT-HYPER-KEYS: larger movements and more advanced editing
 
@@ -165,6 +168,108 @@
 (define-key global-map (kbd "A-,") 'previous-error)
 
 
+;;; MORE HYPER-KEYS: for glyphs and stuff for coding
+
+;; useful glyphs
+(define-key global-map (kbd "H-s H-j") 
+  '(lambda () (interactive) (insert-char ?*)))
+(define-key global-map (kbd "H-s j") 
+  '(lambda () (interactive) (insert-chars '(?\s ?* ?\s))))
+(define-key global-map (kbd "H-s H-k") 
+  '(lambda () (interactive) (insert-char ?_)))
+(define-key global-map (kbd "H-s H-l")
+  '(lambda () (interactive) (insert-char ?&)))
+(define-key global-map (kbd "H-s H-;") 
+  '(lambda () (interactive) (insert-char ?#)))
+(define-key global-map (kbd "H-s H-'") 
+  '(lambda () (interactive) (insert-chars '(?' ?'))
+     (backward-char 1)))
+(define-key global-map (kbd "H-s H-m")
+  '(lambda () (interactive) (insert-char ?$)))
+(define-key global-map (kbd "H-s H-,")
+  '(lambda () (interactive) (insert-chars '(?< ?>)) (backward-char 1)))
+(define-key global-map (kbd "H-s ,")
+  '(lambda () (interactive) (insert-chars '(?< ?\s ?\s ?>))
+     (backward-char 2)))
+(define-key global-map (kbd "H-s H-.")
+  '(lambda () (interactive) (insert-char ?~)))
+(define-key global-map (kbd "H-s H-/")
+  '(lambda () (interactive) (insert-char ?!)))
+
+;; more glyphs
+(define-key global-map (kbd "H-e H-j") 
+  '(lambda () (interactive) (insert-char ?+)))
+(define-key global-map (kbd "H-e j") 
+  '(lambda () (interactive) (insert-chars '(?\s ?+ ?\s))))
+(define-key global-map (kbd "H-e H-k") 
+  '(lambda () (interactive) (insert-char ?-)))
+(define-key global-map (kbd "H-e k") 
+  '(lambda () (interactive) (insert-chars '(?\s ?- ?\s))))
+(define-key global-map (kbd "H-e H-l")
+  '(lambda () (interactive) (insert-char ?=)))
+(define-key global-map (kbd "H-e l") 
+  '(lambda () (interactive) (insert-chars '(?\s ?= ?\s))))
+(define-key global-map (kbd "H-e H-;") 
+  '(lambda () (interactive) (insert-char ?%)))
+(define-key global-map (kbd "H-e ;") 
+  '(lambda () (interactive) (insert-chars '(?\s ?% ?\s))))
+(define-key global-map (kbd "H-e H-'") 
+  '(lambda () (interactive) (insert-chars '(?" ?"))
+     (backward-char 1)))
+(define-key global-map (kbd "H-e H-m") 
+  '(lambda () (interactive) (insert-char ?^)))
+(define-key global-map (kbd "H-e m") 
+  '(lambda () (interactive) (insert-chars '(?\s ?^ ?\s))))
+(define-key global-map (kbd "H-e H-,")
+  '(lambda () (interactive) (insert-chars '(?« ?»)) (backward-char 1)))
+(define-key global-map (kbd "H-e ,")
+  '(lambda () (interactive) (insert-chars '(?« ?\s ?\s ?»))
+     (backward-char 2)))
+
+;; curly braces
+(define-key global-map (kbd "H-s H-u")
+  '(lambda () (interactive) (insert-char ?{)))
+(define-key global-map (kbd "H-s u")
+  '(lambda () (interactive) (insert-chars '(?{ ?\s))))
+(define-key global-map (kbd "H-s H-i")
+  '(lambda () (interactive) (insert-chars '(?{ ?})) (backward-char 1)))
+(define-key global-map (kbd "H-s i")
+  '(lambda () (interactive) (insert-chars '(?{ ?\s ?\s ?}))
+     (backward-char 2)))
+(define-key global-map (kbd "H-s H-o")
+  '(lambda () (interactive) (insert-char ?})))
+(define-key global-map (kbd "H-s o")
+  '(lambda () (interactive) (insert-chars '(?\s ?}))))
+
+;; parentheses
+(define-key global-map (kbd "H-e H-u")
+  '(lambda () (interactive) (insert-char ?()))
+(define-key global-map (kbd "H-e u")
+  '(lambda () (interactive) (insert-chars '(?( ?\s))))
+(define-key global-map (kbd "H-e H-i")
+  '(lambda () (interactive) (insert-chars '(?( ?))) (backward-char 1)))
+(define-key global-map (kbd "H-e i")
+  '(lambda () (interactive) (insert-chars '(?( ?\s ?\s ?)))
+     (backward-char 2)))
+(define-key global-map (kbd "H-e H-o")
+  '(lambda () (interactive) (insert-char ?))))
+(define-key global-map (kbd "H-e o")
+  '(lambda () (interactive) (insert-chars '(?\s ?)))))
+
+;; square brackets
+(define-key global-map (kbd "H-w H-u")
+  '(lambda () (interactive) (insert-char ?[)))
+(define-key global-map (kbd "H-w u")
+  '(lambda () (interactive) (insert-chars '(?[ ?\s))))
+(define-key global-map (kbd "H-w H-i")
+  '(lambda () (interactive) (insert-chars '(?[ ?])) (backward-char 1)))
+(define-key global-map (kbd "H-w i")
+  '(lambda () (interactive) (insert-chars '(?[ ?\s ?\s ?]))
+     (backward-char 2)))
+(define-key global-map (kbd "H-w H-o")
+  '(lambda () (interactive) (insert-char ?])))
+(define-key global-map (kbd "H-w o")
+  '(lambda () (interactive) (insert-chars '(?\s ?]))))
 
 ;;; END
 

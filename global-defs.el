@@ -75,7 +75,6 @@
   (delete-window))
 
 
-
 ;;; TEXT SELECTION
 
 (defun previous-line-with-mark ()
@@ -128,6 +127,16 @@
   (cua-set-mark)
   (end-of-buffer))
 
+
+
+;;; TEXT INSERTION
+
+(defun insert-chars (char-list)
+  (let ((char char-list))
+    (while char
+      (insert-char (car char))
+      (setq char (cdr char)))))
+  
 
 ;;; EMACS LISP
 
