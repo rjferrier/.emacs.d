@@ -18,6 +18,12 @@
 
 ;; BASIC ENVIRONMENT
 
+;; store the path Emacs was launched in as the 'project directory'
+(defvar project-dir default-directory)
+;; then prompt
+(add-hook 'after-init-hook
+	  (lambda () (call-interactively 'set-project-dir)))
+
 (global-auto-revert-mode t)
 (subword-mode t)
 (ido-mode 'both)
@@ -41,6 +47,7 @@
 
 (setq compilation-skip-threshold 2)
 (setq-default compilation-read-command t)  
+;; (defconst default-compile-command "make -w")
 
 ;; force compilation to take place in situ so that we can manipulate
 ;; the window it appears in.  Do not split if possible.

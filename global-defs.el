@@ -191,9 +191,10 @@ region or buffer."
   "Specifies a window for compilation and debugging"
   (interactive)
   (setq console-window (selected-window))
-  ;; remember the current window configuration since gdb will destroy it
+  ;; remember the current window configuration since gdb will destroy
+  ;; it
   (set-register 0 (list (current-window-configuration) nil))
-  (message "Console window and frame layout set"))
+  (message "Compilation/debugging window set"))
 
 (defun select-console-window ()
   "Safely selects or sets the console window"

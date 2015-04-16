@@ -85,22 +85,22 @@
 (define-key global-map (kbd "A-H-<SPC>") 'elisp-evaluate-dwim)
 
 ;; windows resizing
-(define-key global-map (kbd "A-H-;")
+(define-key global-map (kbd "A-H-p")
   '(lambda () (interactive) (enlarge-window 1)))
-(define-key global-map (kbd "A-H-:")
+(define-key global-map (kbd "A-H-P")
   '(lambda () (interactive) (enlarge-window -1)))
-(define-key global-map (kbd "A-H-/")
+(define-key global-map (kbd "A-H-;")
   '(lambda () (interactive) (enlarge-window-horizontally 1)))
-(define-key global-map (kbd "A-H-?")
+(define-key global-map (kbd "A-H-:")
   '(lambda () (interactive) (enlarge-window-horizontally -1)))
-(define-key global-map (kbd "A-H-p") 'balance-windows-area)
+(define-key global-map (kbd "A-H-'") 'balance-windows-area)
 
 
 ;;; ALT-KEYS: file- and buffer-related things
 
 ;; windows splitting and merging
-(define-key global-map (kbd "A-/") 'split-window-horizontally)
-(define-key global-map (kbd "A-;") 'split-window-vertically)
+(define-key global-map (kbd "A-;") 'split-window-horizontally)
+(define-key global-map (kbd "A-p") 'split-window-vertically)
 (define-key global-map (kbd "<A-backspace>") 'delete-window)
 (define-key global-map (kbd "A-c <backspace>") 'delete-other-windows)
 
@@ -132,19 +132,20 @@
 (define-key global-map (kbd "A-h") 'switch-to-buffer)
 (define-key global-map (kbd "A-n") 'save-buffer)
 
-(define-key global-map (kbd "A-c A-o") 'wrapped-revert-buffer)
 (define-key global-map (kbd "A-c A-u") 
   '(lambda () (interactive) (dired default-directory)))
+(define-key global-map (kbd "A-c A-o") 'wrapped-revert-buffer)
 (define-key global-map (kbd "A-c A-y") 'wrapped-find-file)
 (define-key global-map (kbd "A-c A-h") 'ibuffer)
 (define-key global-map (kbd "A-c A-n") 'wrapped-write-file)
 (define-key global-map (kbd "A-c A-m") 'save-and-kill-buffer)
-(define-key global-map (kbd "A-c u") 
-  '(lambda () (interactive) (dired user-emacs-directory)))
+(define-key global-map (kbd "A-c u") 'set-project-dir)
 (define-key global-map (kbd "A-c m") 'wrapped-kill-buffer)
 
 (define-key global-map (kbd "A-x A-m") 'save-and-kill-buffer-and-window)
 (define-key global-map (kbd "A-x m") 'kill-buffer-and-window)
+(define-key global-map (kbd "A-x u") 
+  '(lambda () (interactive) (dired user-emacs-directory)))
 
 
 ;; misc
@@ -162,7 +163,7 @@
 (define-key global-map (kbd "A-<SPC>") 'compile-dwim)
 (define-key global-map (kbd "A-c <SPC>") 'compile-with-query)
 (define-key global-map (kbd "A-d") 'wrapped-debug)
-(define-key global-map (kbd "A-p") 'set-console-window)
+(define-key global-map (kbd "A-c o") 'set-console-window)
 (define-key global-map (kbd "A-m") 'first-error)
 (define-key global-map (kbd "A-.") 'next-error)
 (define-key global-map (kbd "A-,") 'previous-error)
