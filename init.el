@@ -16,6 +16,15 @@
     (setq file (cdr file))))
 
 
+;; set the file for user customisations.  Since this is likely to be
+;; system-specific, it will not be checked into the repository
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(if (file-exists-p custom-file)
+    (load custom-file)
+  (write-region "" nil custom-file))
+
+
+
 ;; BASIC ENVIRONMENT
 
 ;; store the path Emacs was launched in as the 'project directory'
@@ -41,6 +50,11 @@
 	try-expand-line
 	try-complete-lisp-symbol-partially
 	try-complete-lisp-symbol))
+
+;;; WINDMOVE/FRAMEMOVE
+
+(require 'framemove)
+(setq framemove-hook-into-windmove t)
 
 
 ;;; COMPILATION AND DEBUGGING
@@ -89,25 +103,3 @@
   (before whole-line-or-region-yank activate)
   (when (region-active-p)
     (delete-region (region-beginning) (region-end) )))
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(cua-mode t nil (cua-base))
- '(doc-view-continuous t t)
- '(inhibit-startup-screen t)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "white" :weight bold))))
- '(font-lock-keyword-face ((((class color) (min-colors 88) (background dark)) (:foreground "PaleVioletRed1"))))
- '(region ((t (:background "gray40" :foreground "white")))))
