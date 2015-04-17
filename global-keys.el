@@ -163,7 +163,7 @@
 (define-key global-map (kbd "A-<SPC>") 'compile-dwim)
 (define-key global-map (kbd "A-c <SPC>") 'compile-with-query)
 (define-key global-map (kbd "A-d") 'wrapped-debug)
-(define-key global-map (kbd "A-c o") 'set-console-window)
+(define-key global-map (kbd "A-o") 'set-console-window)
 (define-key global-map (kbd "A-m") 'first-error)
 (define-key global-map (kbd "A-.") 'next-error)
 (define-key global-map (kbd "A-,") 'previous-error)
@@ -171,8 +171,14 @@
 
 ;;; MORE HYPER-KEYS: for glyphs and stuff for coding
 
-;; useful glyphs
-(define-key global-map (kbd "H-s H-j") 
+;; really useful glyphs
+(define-key global-map (kbd "H-'")
+  '(lambda () (interactive) (insert-char ?" 1))) ;"
+(define-key global-map (kbd "H-/")
+  '(lambda () (interactive) (insert-char ?\\ 1)))
+
+;; glyphs commonly used for coding
+(define-key global-map (kbd "H-s H-j")
   '(lambda () (interactive) (insert-char ?* 1)))
 (define-key global-map (kbd "H-s j") 
   '(lambda () (interactive) (insert-chars '(?\s ?* ?\s))))
@@ -183,8 +189,7 @@
 (define-key global-map (kbd "H-s H-;") 
   '(lambda () (interactive) (insert-char ?# 1)))
 (define-key global-map (kbd "H-s H-'") 
-  '(lambda () (interactive) (insert-chars '(?' ?'))
-     (backward-char 1)))
+  '(lambda () (interactive) (insert-char ?@ 1)))
 (define-key global-map (kbd "H-s H-m")
   '(lambda () (interactive) (insert-char ?$ 1)))
 (define-key global-map (kbd "H-s H-,")
@@ -195,9 +200,9 @@
 (define-key global-map (kbd "H-s H-.")
   '(lambda () (interactive) (insert-char ?~ 1)))
 (define-key global-map (kbd "H-s H-/")
-  '(lambda () (interactive) (insert-char ?! 1)))
+  '(lambda () (interactive) (insert-char ?| 1)))
 
-;; more glyphs
+;; glyphs commonly used for arithmetic and punctuation
 (define-key global-map (kbd "H-e H-j") 
   '(lambda () (interactive) (insert-char ?+ 1)))
 (define-key global-map (kbd "H-e j") 
@@ -215,17 +220,17 @@
 (define-key global-map (kbd "H-e ;") 
   '(lambda () (interactive) (insert-chars '(?\s ?% ?\s))))
 (define-key global-map (kbd "H-e H-'") 
-  '(lambda () (interactive) (insert-chars '(?" ?"))
-     (backward-char 1)))
-(define-key global-map (kbd "H-e H-m") 
+  '(lambda () (interactive) (insert-char ?` 1)))
+(define-key global-map (kbd "H-e H-m")
   '(lambda () (interactive) (insert-char ?^ 1)))
 (define-key global-map (kbd "H-e m") 
   '(lambda () (interactive) (insert-chars '(?\s ?^ ?\s))))
 (define-key global-map (kbd "H-e H-,")
-  '(lambda () (interactive) (insert-chars '(?« ?»)) (backward-char 1)))
-(define-key global-map (kbd "H-e ,")
-  '(lambda () (interactive) (insert-chars '(?« ?\s ?\s ?»))
-     (backward-char 2)))
+  '(lambda () (interactive) (insert-chars '(?' ?')) (backward-char 1)))
+(define-key global-map (kbd "H-e H-.")
+  '(lambda () (interactive) (insert-chars '(?" ?")) (backward-char 1)))
+(define-key global-map (kbd "H-e H-/")
+  '(lambda () (interactive) (insert-char ?! 1)))
 
 ;; curly braces
 (define-key global-map (kbd "H-s H-u")
@@ -253,7 +258,7 @@
   '(lambda () (interactive) (insert-chars '(?( ?\s ?\s ?)))
      (backward-char 2)))
 (define-key global-map (kbd "H-e H-o")
-  '(lambda () (interactive) (insert-char ? 1)))
+  '(lambda () (interactive) (insert-char ?) 1)))
 (define-key global-map (kbd "H-e o")
   '(lambda () (interactive) (insert-chars '(?\s ?)))))
 
@@ -271,6 +276,14 @@
   '(lambda () (interactive) (insert-char ?] 1)))
 (define-key global-map (kbd "H-w o")
   '(lambda () (interactive) (insert-chars '(?\s ?]))))
+
+;; misc
+(define-key global-map (kbd "H-[")
+  '(lambda () (interactive) (insert-char ?« 1)))
+(define-key global-map (kbd "H-]")
+  '(lambda () (interactive) (insert-char ?» 1)))
+
+
 
 ;;; END
 
