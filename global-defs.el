@@ -134,7 +134,7 @@
 (defun insert-chars (char-list)
   (let ((char char-list))
     (while char
-      (insert-char (car char))
+      (insert-char (car char) 1)
       (setq char (cdr char)))))
   
 
