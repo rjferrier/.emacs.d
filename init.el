@@ -1,5 +1,5 @@
 
-;; EXTERNAL LOADINGS
+;;; FIRST THINGS FIRST
 
 ;; add directories to the load path
 (add-to-list 'load-path user-emacs-directory)
@@ -16,8 +16,35 @@
     (setq file (cdr file))))
 
 
-;; set the file for user customisations.  Since this is likely to be
-;; system-specific, it will not be checked into the repository
+;; set some system-invariant customisations...
+(custom-set-variables
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
+ '(doc-view-continuous t t)
+ '(inhibit-startup-screen t)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+
+;; (custom-set-faces
+;;  '(default
+;;     ((t
+;;       (:inherit nil :stipple nil :background "black" :foreground "white"
+;; 		:inverse-video nil :box nil :strike-through nil
+;; 		:overline nil :underline nil :slant normal :weight normal
+;; 		:height 128 :width normal :foundry "unknown"
+;; 		:family "DejaVu Sans Mono"))))
+;;  '(region ((t (:background "gray40" :foreground "white"))))
+;;  '(font-latex-sectioning-5-face
+;;    ((((class color) (background dark))
+;;      (:inherit variable-pitch :foreground "white" :weight bold))))
+;;  '(font-lock-keyword-face
+;;    ((((class color) (min-colors 88) (background dark))
+;;      (:foreground "PaleVioletRed1")))))
+
+
+;; ... but allow the user to override these with system-dependent
+;; customisations.  These will reside in a separate file and will not
+;; be checked into the repository
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (if (file-exists-p custom-file)
     (load custom-file)
@@ -25,7 +52,7 @@
 
 
 
-;; BASIC ENVIRONMENT
+;;; BASIC ENVIRONMENT
 
 ;; store the path Emacs was launched in as the 'project directory'
 (defvar project-dir default-directory)
@@ -37,6 +64,7 @@
 (subword-mode t)
 (ido-mode 'both)
 (setq ido-enable-flex-matching t)
+
 
 ;; sequence and keybinding for expansions
 (setq hippie-expand-try-functions-list
