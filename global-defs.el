@@ -136,49 +136,12 @@
     (while char
       (insert-char (car char) 1)
       (setq char (cdr char)))))
-  
+
+
+
+
 
 ;;; EMACS LISP
-
-(defvar elisp-foo-body nil)
-
-(defun elisp-define-foo ()
-  "Defines or resets a test snippet called elisp-define-foo."
-  (interactive)
-  (message
-   (if (use-region-p)
-       (let ((str (buffer-substring-no-properties
-		   (region-beginning) (region-end))))
-	 (with-temp-buffer
-	   (insert "(defun elisp-foo () (interactive) " str " )")
-	   (eval-current-buffer)
-	   (setq elisp-foo-body str))
-	 "Stored this snippet for execution.")
-     (progn
-       (setq elisp-foo-body nil)
-       "Reset snippet execution.")
-     )))
-
-(defun elisp-evaluate-dwim ()
-  "If elisp-foo-body has been defined, evaluates elisp-foo and
-prints the result if it is a string.  Otherwise, evaluates the current
-region or buffer."
-  (interactive)
-  (let ((result
-	 (if elisp-foo-body
-	     (progn
-	       (elisp-foo))
-	   (if (use-region-p)
-	       (let ((str (buffer-substring-no-properties
-			   (region-beginning) (region-end))))
-		 (with-temp-buffer
-		   (insert str)
-		   (eval-current-buffer)))
-	     (progn
-	       (eval-current-buffer)
-	       "Evaluated current buffer")))))
-    (when (stringp result)
-      (message result))))
 
 
 ;;; COMPILATION AND DEBUGGING
@@ -224,7 +187,209 @@ region or buffer."
   (wrapped-compile nil))
 
 
+;;; CODE/ADVANCED NAVIGATION AND EDITING 
+
+(setq-default level-1-regexp "")
+(setq-default level-2-regexp "")
+(setq-default level-3-regexp "")
+(setq-default level-2-stride 1)
+(setq-default level-3-stride 1)
+(setq-default contents-level-regexp "")
+
+(defvar navigate-lock nil)
+
+(defun navigate-last-command ()
+  (or (equal last-command 'navigate-up)
+      (equal last-command 'navigate-down)
+      (equal last-command 'navigate-left)
+      (equal last-command 'navigate-right)
+      (equal last-command 'navigate-further-up)
+      (equal last-command 'navigate-further-down)
+      (equal last-command 'navigate-up-toggle)
+      (equal last-command 'navigate-down-toggle)
+      (equal last-command 'navigate-left-toggle)
+      (equal last-command 'navigate-right-toggle)
+      (equal last-command 'navigate-further-up-toggle)
+      (equal last-command 'navigate-further-down-toggle)))
+
+(defun navigate-up-toggle ()
+  (interactive)
+  (setq navigate-lock (not navigate-lock))
+  (navigate-up t))  
+(defun navigate-up (&optional navigate-trigger)
+  (interactive)
+  (if (or (navigate-last-command)
+	  navigate-trigger)
+      (if (and navigate-lock
+	       (> (length level-2-regexp) 0))
+	  (loop repeat level-2-stride do
+		(re-search-backward level-2-regexp nil t))
+	(backward-paragraph))
+    (progn
+      (setq navigate-lock nil)
+      (backward-paragraph))))
+
+(defun navigate-down-toggle ()
+  (interactive)
+  (setq navigate-lock (not navigate-lock))
+  (navigate-down t))
+(defun navigate-down (&optional navigate-trigger)
+  (interactive)
+  (if (or (navigate-last-command)
+	  navigate-trigger)
+      (if (and navigate-lock
+	       (> (length level-2-regexp) 0))
+	  (loop repeat level-2-stride do
+		  (re-search-forward level-2-regexp nil t))
+	(forward-paragraph))
+    (progn
+      (setq navigate-lock nil)
+      (forward-paragraph))))
+
+(defun navigate-left-toggle ()
+  (interactive)
+  (setq navigate-lock (not navigate-lock))
+  (navigate-left t))
+(defun navigate-left (&optional navigate-trigger)
+  (interactive)
+  (if (or (navigate-last-command)
+	  navigate-trigger)
+      (if (and navigate-lock
+	       (> (length level-3-regexp) 0))
+	  (loop repeat level-3-stride do
+		(re-search-backward level-3-regexp nil t))
+	(subword-backward))
+    (progn
+      (setq navigate-lock nil)
+      (subword-backward)))
+  (setq navigate-trigger nil))
+
+(defun navigate-right-toggle ()
+  (interactive)
+  (setq navigate-lock (not navigate-lock))
+  (navigate-right t))
+(defun navigate-right (&optional navigate-trigger)
+  (interactive)
+  (if (or (navigate-last-command)
+	  navigate-trigger)
+      (if (and navigate-lock
+	       (> (length level-3-regexp) 0))
+	  (loop repeat level-3-stride do
+		(re-search-forward level-3-regexp nil t))
+	(subword-forward))
+    (progn
+      (setq navigate-lock nil)
+      (subword-forward))))
+
+(defun navigate-further-up-toggle ()
+  (interactive)
+  (setq navigate-lock (not navigate-lock))
+  (navigate-further-up t))  
+(defun navigate-further-up (&optional navigate-trigger)
+  (interactive)
+  (if (or (navigate-last-command)
+	  navigate-trigger)
+      (if (and navigate-lock
+	       (> (length level-1-regexp) 0))
+	  (unless
+	      (re-search-backward level-1-regexp nil t)
+	    (goto-char (point-min)))
+	(beginning-of-buffer))
+    (progn
+      (setq navigate-lock nil)
+      (beginning-of-buffer))))
+
+(defun navigate-further-down-toggle ()
+  (interactive)
+  (setq navigate-lock (not navigate-lock))
+  (navigate-further-down t))
+(defun navigate-further-down (&optional navigate-trigger)
+  (interactive)
+  (if (or (navigate-last-command)
+	  navigate-trigger)
+      (if (and navigate-lock
+	       (> (length level-1-regexp) 0))
+	  (unless
+	      (re-search-forward level-1-regexp nil t)
+	    (goto-char (point-max)))
+	(end-of-buffer))
+    (progn
+      (setq navigate-lock nil)
+      (end-of-buffer))))
+
+
+(defun buffer-or-contents-name (return-contents-p)
+  "If the input arg is non-nil and the name of the buffer is xyz or
+*xyz-contents*, returns *xyz-contents*.  If the input arg is nil and the
+name of the buffer is xyz or *xyz-contents*, returns xyz."
+  (let (core-str)
+    (if (string-match "\\*\\(.*?\\)-contents\\*" (buffer-name))
+	(setq core-str (replace-match "\\1" nil nil (buffer-name)))
+      (setq core-str (buffer-name)))
+    (if return-contents-p
+	(concat "*" core-str "-contents*")
+      core-str)))
+
+
+(add-hook 'occur-mode-hook (lambda () (setq truncate-lines t)))
+(add-to-list 'same-window-regexps "-contents")
+(add-to-list 'same-window-buffer-names "*Occur*")
+(defun contents-pane (str-regexp)
+  "Uses Occur to temporarily list subheadings for a buffer."
+  (interactive)
+  (let* ((cpn (buffer-or-contents-name t))
+	 (cp (get-buffer-window cpn))
+	 (hp (get-buffer-window
+	      (buffer-or-contents-name nil))))
+    ;; check whether an associated contents pane already exists
+    (if cp
+	(progn
+	  ;; it does - do a clean up operation
+	  (delete-window cp)
+	  (kill-buffer cpn)
+	  (select-window hp))
+      (progn
+	;; it does not - proceed with Occur operation, as long
+	;; as the argument regexp is not empty
+	(when (> (length str-regexp) 0)
+	  ;; make a new sub-window and perform Occur with the
+	  ;; supplied regexp argument.
+	  (split-window-vertically)
+	  ;; (add-to-list 'same-window-buffer-names cpn)
+	  (occur str-regexp)
+	  (let ((cpb (get-buffer "*Occur*")))
+	    (if cpb
+		(progn
+		  ;; (select-window (get-buffer-window "*Occur*"))
+		  ;; (rename-buffer cpn)
+		  (set-buffer (get-buffer "*Occur*"))
+		  (let ((n 0))
+		    (save-excursion
+		      (goto-char (point-min))
+		      (setq n (string-to-number (thing-at-point 'word)))
+		      (end-of-line) (forward-char 1)
+		      (narrow-to-region (point) (point-max)))
+		    (enlarge-window (- (min 15 (+ n 1)) (window-height))))
+		  (rename-buffer cpn))
+	      (delete-window))
+	    ))))))
+
+(defun contents ()
+  (interactive)
+  (contents-pane contents-level-regexp))
+
+(defun last-element (str-regexp)
+  (save-excursion
+    (re-search-backward str-regexp))
+  (message (match-string 1)))
+
+
 ;;; MISC
+
+(defun custom-time-stamp ()
+  (when (region-active-p)
+    (delete-region (region-beginning) (region-end) ))
+  (format-time-string "%Y-%m-%dT%T"))
 
 (defun shell-in-split-window ()
   (interactive)
@@ -235,3 +400,5 @@ region or buffer."
 
 ;;; END
 (provide 'global-defs)
+
+

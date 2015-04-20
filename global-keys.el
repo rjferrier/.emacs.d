@@ -42,6 +42,30 @@
    (define-key isearch-mode-map (kbd "H-*") 'isearch-repeat-backward))
 (define-key global-map (kbd "H-d H-7") 'highlight-symbol-at-point)
 
+;; useful messages
+(define-key global-map (kbd "H-s 0")
+  (lambda () (interactive) (message (last-element contents-level-regexp))))
+(define-key global-map (kbd "H-s 1")
+  (lambda () (interactive) (message (last-element level-1-regexp))))
+(define-key global-map (kbd "H-s 2")
+  (lambda () (interactive) (message (last-element level-2-regexp))))
+(define-key global-map (kbd "H-s 3")
+  (lambda () (interactive) (message (last-element level-3-regexp))))
+
+;; useful insertions
+(define-key global-map (kbd "H-e f")
+  (lambda () (interactive) (insert (buffer-file-name))))
+(define-key global-map (kbd "H-e t")
+  (lambda () (interactive) (insert (custom-time-stamp))))
+(define-key global-map (kbd "H-e 0")
+  (lambda () (interactive) (insert (last-element contents-level-regexp))))
+(define-key global-map (kbd "H-e 1")
+  (lambda () (interactive) (insert (last-element level-1-regexp))))
+(define-key global-map (kbd "H-e 2")
+  (lambda () (interactive) (insert (last-element level-2-regexp))))
+(define-key global-map (kbd "H-e 3")
+  (lambda () (interactive) (insert (last-element level-3-regexp))))
+
 ;; misc
 (define-key global-map (kbd "H-<SPC>") 'hippie-expand)
 (define-key global-map (kbd "<H-backspace>") 'undo)
@@ -49,9 +73,8 @@
 (define-key global-map (kbd "H-d H-d") 'exchange-point-and-mark)
 ;; ;; there seems to be a problem with lockcaps-mode...
 ;; (define-key global-map (kbd "H-f") 'lockcaps-mode)
-
-(define-key global-map (kbd "H-s H-j") 
-  '(lambda () (interactive) (insert-chars '("a" "b"))))
+(define-key global-map (kbd "H-s g") 'goto-line)
+(define-key global-map (kbd "H-s G") 'goto-char)
 
 
 ;;; ALT-HYPER-KEYS: larger movements and more advanced editing
@@ -80,10 +103,6 @@
 (define-key global-map (kbd "A-H-7") 'highlight-symbol-query-replace)
 (define-key global-map (kbd "A-H-8") 'query-replace-regexp)
 
-;; elisp evaluation
-(define-key global-map (kbd "A-H-d A-H-<SPC>") 'elisp-define-foo)
-(define-key global-map (kbd "A-H-<SPC>") 'elisp-evaluate-dwim)
-
 ;; windows resizing
 (define-key global-map (kbd "A-H-p")
   '(lambda () (interactive) (enlarge-window 1)))
@@ -94,6 +113,20 @@
 (define-key global-map (kbd "A-H-:")
   '(lambda () (interactive) (enlarge-window-horizontally -1)))
 (define-key global-map (kbd "A-H-'") 'balance-windows-area)
+
+;; code navigation
+(define-key global-map (kbd "A-H-s A-H-i") 'navigate-up-toggle)
+(define-key global-map (kbd "A-H-s A-H-k") 'navigate-down-toggle)
+(define-key global-map (kbd "A-H-s A-H-j") 'navigate-left-toggle)
+(define-key global-map (kbd "A-H-s A-H-l") 'navigate-right-toggle)
+(define-key global-map (kbd "A-H-s A-H-u") 'navigate-further-up-toggle)
+(define-key global-map (kbd "A-H-s A-H-o") 'navigate-further-down-toggle)
+(define-key global-map (kbd "A-H-i") 'navigate-up)
+(define-key global-map (kbd "A-H-k") 'navigate-down)
+(define-key global-map (kbd "A-H-j") 'navigate-left)
+(define-key global-map (kbd "A-H-l") 'navigate-right)
+(define-key global-map (kbd "A-H-u") 'navigate-further-up)
+(define-key global-map (kbd "A-H-o") 'navigate-further-down)
 
 
 ;;; ALT-KEYS: file- and buffer-related things
@@ -147,6 +180,9 @@
 (define-key global-map (kbd "A-x u") 
   '(lambda () (interactive) (dired user-emacs-directory)))
 
+
+;; code elements
+(define-key global-map (kbd "A-0") 'contents)
 
 ;; misc
 (define-key global-map (kbd "A-f") 'new-frame)
