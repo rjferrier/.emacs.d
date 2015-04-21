@@ -6,9 +6,6 @@
 (let ((default-directory user-emacs-directory))
   (normal-top-level-add-subdirs-to-load-path))
 
-;; get global functions and key bindings
-(require 'global-keys)
-
 ;; load init-*.el files
 (let ((file (directory-files user-emacs-directory t "^init-.*\.el$")))
   (while file
@@ -53,6 +50,9 @@
 
 
 ;;; BASIC ENVIRONMENT
+
+;; get global functions and key bindings
+(require 'global-keys)
 
 ;; store the path Emacs was launched in as the 'project directory'
 (defvar project-dir default-directory)
