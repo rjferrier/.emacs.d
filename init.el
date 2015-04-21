@@ -24,12 +24,6 @@
  '(inhibit-startup-screen t)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(which-func ((((class color) (min-colors 88) (background dark)) nil))))
 
 ;; ... but allow the user to override these with system-dependent
 ;; customisations.  These will reside in a separate file and will not
@@ -54,7 +48,6 @@
 (ido-mode 'both)
 (setq ido-enable-flex-matching t)
 
-
 ;; sequence and keybinding for expansions
 (setq hippie-expand-try-functions-list
       '(try-expand-all-abbrevs
@@ -73,9 +66,12 @@
 (require 'framemove)
 (setq framemove-hook-into-windmove t)
 
-;;; WHICH-FUNCTION
 
-(which-function-mode t)
+;;; SEMANTIC
+
+(semantic-mode t)
+(eval-after-load "semantic"
+  (global-semantic-stickyfunc-mode 1))
 
 ;; put function info in the header area
 (setq mode-line-format (delete (assoc 'which-func-mode
