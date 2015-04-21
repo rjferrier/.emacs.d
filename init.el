@@ -35,6 +35,21 @@
     (load custom-file)
   (write-region "" nil custom-file))
 
+;; Windows-specific
+(defconst in-win32
+  (or 
+   (eq system-type 'cygwin)
+   (eq system-type 'ms-dos)
+   (eq system-type 'windows-nt)))
+(when in-win32
+  (message "Adjusting MS Windows key modifiers")
+  (setq w32-alt-is-meta nil
+	w32-pass-apps-to-system nil
+	w32-pass-lwindow-to-system nil
+	w32-pass-rwindow-to-system nil
+	w32-lwindow-modifier 'meta
+	w32-apps-modifier 'hyper)
+  (w32-register-hot-key [H-<SPC>]))
 
 
 ;;; BASIC ENVIRONMENT

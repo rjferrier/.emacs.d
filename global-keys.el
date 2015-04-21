@@ -265,11 +265,6 @@
   '(lambda () (interactive) (insert-chars '(?\s ?^ ?\s))))
 (define-key global-map (kbd "H-e H-.")
   '(lambda () (interactive) (insert-chars '(?" ?")) (backward-char 1)))
-(define-key global-map (kbd "H-e H-,")
-  '(lambda () (interactive) (insert-chars '(?« ?»)) (backward-char 1)))
-(define-key global-map (kbd "H-e ,")
-  '(lambda () (interactive) (insert-chars '(?« ?\s ?\s ?»))
-     (backward-char 2)))
 (define-key global-map (kbd "H-e H-/")
   '(lambda () (interactive) (insert-char ?! 1)))
 
@@ -318,11 +313,6 @@
 (define-key global-map (kbd "H-w o")
   '(lambda () (interactive) (insert-chars '(?\s ?]))))
 
-;; misc
-(define-key global-map (kbd "H-[")
-  '(lambda () (interactive) (insert-char ?« 1)))
-(define-key global-map (kbd "H-]")
-  '(lambda () (interactive) (insert-char ?» 1)))
 
 
 
