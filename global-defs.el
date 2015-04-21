@@ -138,12 +138,6 @@
       (setq char (cdr char)))))
 
 
-
-
-
-;;; EMACS LISP
-
-
 ;;; COMPILATION AND DEBUGGING
 
 (setq compilation-skip-threshold 2)

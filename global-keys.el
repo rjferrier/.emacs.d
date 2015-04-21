@@ -198,8 +198,8 @@
 ;; compilation and debugging
 (define-key global-map (kbd "A-<SPC>") 'compile-dwim)
 (define-key global-map (kbd "A-c <SPC>") 'compile-with-query)
+(define-key global-map (kbd "A-c o") 'set-console-window)
 (define-key global-map (kbd "A-d") 'wrapped-debug)
-(define-key global-map (kbd "A-o") 'set-console-window)
 (define-key global-map (kbd "A-m") 'first-error)
 (define-key global-map (kbd "A-.") 'next-error)
 (define-key global-map (kbd "A-,") 'previous-error)
