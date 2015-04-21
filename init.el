@@ -23,7 +23,9 @@
  '(doc-view-continuous t t)
  '(inhibit-startup-screen t)
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(ediff-split-window-function 'split-window-horizontally)
+ '(ediff-window-setup-function 'ediff-setup-windows-plain))
 
 ;; ... but allow the user to override these with system-dependent
 ;; customisations.  These will reside in a separate file and will not

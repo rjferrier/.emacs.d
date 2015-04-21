@@ -234,9 +234,11 @@
   '(lambda () (interactive) (insert-chars '(?< ?\s ?\s ?>))
      (backward-char 2)))
 (define-key global-map (kbd "H-s H-.")
-  '(lambda () (interactive) (insert-char ?~ 1)))
+  '(lambda () (interactive) (insert-chars '(?' ?')) (backward-char 1)))
 (define-key global-map (kbd "H-s H-/")
   '(lambda () (interactive) (insert-char ?| 1)))
+(define-key global-map (kbd "H-s /")
+  '(lambda () (interactive) (insert-char ?~ 1)))
 
 ;; glyphs commonly used for arithmetic and punctuation
 (define-key global-map (kbd "H-e H-j") 
@@ -261,10 +263,13 @@
   '(lambda () (interactive) (insert-char ?^ 1)))
 (define-key global-map (kbd "H-e m") 
   '(lambda () (interactive) (insert-chars '(?\s ?^ ?\s))))
-(define-key global-map (kbd "H-e H-,")
-  '(lambda () (interactive) (insert-chars '(?' ?')) (backward-char 1)))
 (define-key global-map (kbd "H-e H-.")
   '(lambda () (interactive) (insert-chars '(?" ?")) (backward-char 1)))
+(define-key global-map (kbd "H-e H-,")
+  '(lambda () (interactive) (insert-chars '(?« ?»)) (backward-char 1)))
+(define-key global-map (kbd "H-e ,")
+  '(lambda () (interactive) (insert-chars '(?« ?\s ?\s ?»))
+     (backward-char 2)))
 (define-key global-map (kbd "H-e H-/")
   '(lambda () (interactive) (insert-char ?! 1)))
 
