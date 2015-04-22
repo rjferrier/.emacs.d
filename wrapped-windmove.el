@@ -91,32 +91,32 @@
 
 
 ;; buf-swap: swaps buffers between windows
-(defun buf-swap-helper ()
+(defun windmove-buf-swap-helper ()
   (windmove-helper-mid)
   ;; make target buffer current in starting window
   (set-window-buffer start-window (window-buffer target-window))  
   ;; make starting buffer current in other window
   (set-window-buffer target-window start-buffer))
 
-(defun buf-swap-up ()
+(defun windmove-buf-swap-up ()
   (interactive)
   (windmove-helper-start)
   (windmove-up)
   (buf-swap-helper))
 
-(defun buf-swap-down ()
+(defun windmove-buf-swap-down ()
   (interactive)
   (windmove-helper-start)
   (windmove-down)
   (buf-swap-helper))
 
-(defun buf-swap-left ()
+(defun windmove-buf-swap-left ()
   (interactive)
   (windmove-helper-start)
   (windmove-left)
   (buf-swap-helper))
 
-(defun buf-swap-right ()
+(defun windmove-buf-swap-right ()
   (interactive)
   (windmove-helper-start)
   (windmove-right)
