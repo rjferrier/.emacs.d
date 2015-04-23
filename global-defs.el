@@ -181,6 +181,16 @@
   (wrapped-compile nil))
 
 
+(defun wrapped-debug ()
+  (interactive)
+  (select-console-window)
+  (cd project-directory)
+  (condition-case nil
+      (call-interactively 'gud-gdb)
+    (error nil))
+  (insert "run"))
+
+
 ;;; CODE/ADVANCED NAVIGATION AND EDITING 
 
 (setq-default level-1-regexp "")

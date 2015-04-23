@@ -76,6 +76,8 @@
 (define-key global-map (kbd "H-s g") 'goto-line)
 (define-key global-map (kbd "H-s G") 'goto-char)
 
+(define-key global-map (kbd "<H-mouse-3>") 'artist-mode)
+
 
 ;;; ALT-HYPER-KEYS: larger movements and more advanced editing
 
