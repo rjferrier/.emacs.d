@@ -54,9 +54,7 @@
 ;; get global functions and key bindings
 (require 'global-keys)
 
-;; store the path Emacs was launched in as the 'project directory'
-(defvar project-dir default-directory)
-;; then prompt
+;; prompt for the 'project directory'
 (add-hook 'after-init-hook
 	  (lambda () (call-interactively 'set-project-dir)))
 

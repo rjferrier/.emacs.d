@@ -102,25 +102,25 @@
   (interactive)
   (windmove-helper-start)
   (windmove-up)
-  (buf-swap-helper))
+  (windmove-buf-swap-helper))
 
 (defun windmove-buf-swap-down ()
   (interactive)
   (windmove-helper-start)
   (windmove-down)
-  (buf-swap-helper))
+  (windmove-buf-swap-helper))
 
 (defun windmove-buf-swap-left ()
   (interactive)
   (windmove-helper-start)
   (windmove-left)
-  (buf-swap-helper))
+  (windmove-buf-swap-helper))
 
 (defun windmove-buf-swap-right ()
   (interactive)
   (windmove-helper-start)
   (windmove-right)
-  (buf-swap-helper))
+  (windmove-buf-swap-helper))
 
 
 ;; global variable toggled by windmove-buf-copy 
