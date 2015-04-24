@@ -82,11 +82,12 @@
 (setq framemove-hook-into-windmove t)
 
 
-;;; SEMANTIC
+;;; SEMANTIC/WHICH FUNC
 
-(semantic-mode t)
-(eval-after-load "semantic"
-  (global-semantic-stickyfunc-mode 1))
+;; ;; warning: causes my laptop to hang...
+;; (semantic-mode t)
+;; (eval-after-load "semantic"
+;;   (global-semantic-stickyfunc-mode 1))
 
 ;; put function info in the header area
 (setq mode-line-format (delete (assoc 'which-func-mode
