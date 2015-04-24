@@ -135,6 +135,10 @@
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$\\|.+~$"))
 
+(require 'ls-lisp)
+(setq ls-lisp-use-insert-directory-program nil)
+(setq ls-lisp-verbosity '())
+
 
 ;;; WHOLE-LINE-OR-REGION MODE
 
