@@ -43,6 +43,10 @@
 (define-key global-map (kbd "H-d H-7") 'highlight-symbol-at-point)
 
 ;; useful messages
+(define-key global-map (kbd "H-s f")
+  (lambda () (interactive) (insert (buffer-file-name))))
+(define-key global-map (kbd "H-s t")
+  (lambda () (interactive) (insert (custom-time-stamp))))
 (define-key global-map (kbd "H-s 0")
   (lambda () (interactive) (message (last-element contents-level-regexp))))
 (define-key global-map (kbd "H-s 1")
@@ -53,10 +57,6 @@
   (lambda () (interactive) (message (last-element level-3-regexp))))
 
 ;; useful insertions
-(define-key global-map (kbd "H-e f")
-  (lambda () (interactive) (insert (buffer-file-name))))
-(define-key global-map (kbd "H-e t")
-  (lambda () (interactive) (insert (custom-time-stamp))))
 (define-key global-map (kbd "H-e 0")
   (lambda () (interactive) (insert (last-element contents-level-regexp))))
 (define-key global-map (kbd "H-e 1")
@@ -92,6 +92,9 @@
 (define-key global-map (kbd "A-H-h") 'subword-kill)
 (define-key global-map (kbd "A-H-n") 'fill-paragraph)
 (define-key global-map (kbd "A-H-m") 'yank-pop)
+(define-key global-map (kbd "A-H-,") 'copy-buffer-file-name)
+(define-key global-map (kbd "A-H-<") 
+  (lambda () (interactive) (copy-buffer-file-name t)))
 
 ;; select text
 (define-key global-map (kbd "A-H-d A-H-i") 'backward-paragraph-with-mark)
@@ -184,7 +187,7 @@
 
 
 ;; code elements
-(define-key global-map (kbd "A-0") 'contents)
+(define-key global-map (kbd "<A-return>") 'contents)
 
 ;; misc
 (define-key global-map (kbd "A-f") 'new-frame)

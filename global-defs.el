@@ -1,4 +1,4 @@
-;; PERSONALISED DIRECTORIES
+;;; PERSONALISED DIRECTORIES
 
 ;; store the path Emacs was launched in as the 'project directory'
 (defvar project-directory default-directory)
@@ -17,7 +17,7 @@
   (dired user-emacs-directory))
 
 
-;; OS-RELATED FUNCTIONS
+;;; OS-RELATED FUNCTIONS
 
 (defun launch-nautilus-here ()
   (interactive)
@@ -389,6 +389,17 @@ name of the buffer is xyz or *xyz-contents*, returns xyz."
 
 
 ;;; MISC
+
+(defun copy-buffer-file-name (&optional with-path)
+  (interactive)
+  (let ((f (buffer-file-name)))
+    (if f
+	(progn
+	  (unless with-path
+	    (setq f (file-name-nondirectory f)))
+	  (kill-new f))
+      ;; if no file name, default to buffer name
+      (kill-new (buffer-name)))))
 
 (defun custom-time-stamp ()
   (when (region-active-p)
