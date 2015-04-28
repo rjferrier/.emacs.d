@@ -1,0 +1,29 @@
+! begin by clearing the CapsLock modifier group 
+clear Lock
+
+! Modifier group Mod4 usually contains Super and/or Hyper; we shall
+! remove Hyper and put it in group Mod3.
+remove Mod4 = Hyper_L
+add Mod3 = Hyper_L
+
+! Mod1 usually contains Alt and/or Meta; we shall remove Meta and put 
+! it in group Mod4.
+remove Mod1 = Meta_L
+add Mod4 = Meta_L
+
+! Xmodmap sometimes moves Alt and Meta together for no good reason.
+! Reset Alt to Mod1.
+remove Mod4 = Alt_L
+add Mod1 = Alt_L
+
+! We won't need the Super modifiers, but removing them completely
+! causes weird things to happen.  Put them with AltGr.
+remove Mod4 = Super_L Super_R
+add Mod5 = Super_L Super_R
+
+! Now map the F key to Hyper, the Alt key to Alt, the Caps key to F
+! and the Windows key to Meta
+keycode 41 = Hyper_L
+keycode 64 = Alt_L
+keycode 66 = f
+keycode 133 = Meta_L
