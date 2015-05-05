@@ -104,6 +104,9 @@
 (define-key global-map (kbd "A-H-d A-H-u") 'beginning-of-buffer-with-mark)
 (define-key global-map (kbd "A-H-d A-H-o") 'end-of-buffer-with-mark)
 
+;; misc text editing
+(define-key global-map (kbd "A-H-d A-H-n") 'toggle-fill-column)
+
 ;; search and replace
 (define-key global-map (kbd "A-H-7") 'highlight-symbol-query-replace)
 (define-key global-map (kbd "A-H-8") 'query-replace-regexp)
