@@ -1,4 +1,4 @@
-;; PERSONALISED DIRECTORIES
+;;; PERSONALISED DIRECTORIES
 
 ;; store the path Emacs was launched in as the 'project directory'
 (defvar project-directory default-directory)
@@ -191,6 +191,16 @@
 (defun compile-with-query ()
   (interactive)
   (wrapped-compile nil))
+
+
+(defun wrapped-debug ()
+  (interactive)
+  (select-console-window)
+  (cd project-directory)
+  (condition-case nil
+      (call-interactively 'gud-gdb)
+    (error nil))
+  (insert "run"))
 
 
 ;;; CODE/ADVANCED NAVIGATION AND EDITING 
@@ -391,6 +401,17 @@ name of the buffer is xyz or *xyz-contents*, returns xyz."
 
 
 ;;; MISC
+
+(defun copy-buffer-file-name (&optional with-path)
+  (interactive)
+  (let ((f (buffer-file-name)))
+    (if f
+	(progn
+	  (unless with-path
+	    (setq f (file-name-nondirectory f)))
+	  (kill-new f))
+      ;; if no file name, default to buffer name
+      (kill-new (buffer-name)))))
 
 (defun custom-time-stamp ()
   (when (region-active-p)
