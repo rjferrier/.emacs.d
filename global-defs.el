@@ -17,7 +17,7 @@
   (dired user-emacs-directory))
 
 
-;; OS-RELATED FUNCTIONS
+;;; OS-RELATED FUNCTIONS
 
 (defun launch-nautilus-here ()
   (interactive)
@@ -129,13 +129,25 @@
 
 
 
-;;; TEXT INSERTION
+;;; TEXT EDITING
 
 (defun insert-chars (char-list)
   (let ((char char-list))
     (while char
       (insert-char (car char) 1)
       (setq char (cdr char)))))
+
+(defvar fill-column-1 80)
+(defvar fill-column-2 72)
+(defun toggle-fill-column ()
+  (interactive)
+  (if (eq fill-column fill-column-1)
+      (progn
+	(setq fill-column fill-column-2)
+	(message (format "fill-column set to %d" fill-column)))
+    (progn
+      (setq fill-column fill-column-1)
+      (message (format "fill-column set to %d" fill-column)))))
 
 
 ;;; COMPILATION AND DEBUGGING
