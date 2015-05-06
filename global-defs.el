@@ -193,7 +193,7 @@
     (select-window console-window))
   (cd project-directory)
   (call-interactively 'compile)
-  (set-buffer "*compilation*")
+  (set-buffer (window-buffer))
   (string-match make-operand-pattern compile-command)
   (rename-buffer (format "*compilation-%s*" (match-string 1 compile-command))))
 
