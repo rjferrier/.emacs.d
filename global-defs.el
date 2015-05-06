@@ -178,8 +178,9 @@
 ;;     (error (set-console-window))))
 
 (defadvice next-error (before error-in-other-window activate)
-  (select-window console-window)
-  (select-window (next-window)))
+  (when console-window
+    (select-window console-window)
+    (select-window (next-window))))
 
 
 (defvar make-operand-pattern
