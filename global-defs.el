@@ -143,15 +143,20 @@
 (setq compilation-skip-threshold 2)
 (setq-default compilation-read-command t)  
 
-(defvar console-window (selected-window))
+(defvar console-window nil)
 (defun set-console-window ()
   "Specifies a window for compilation and debugging"
   (interactive)
-  (setq console-window (selected-window))
-  ;; remember the current window configuration since gdb will destroy
-  ;; it
-  (set-register 0 (list (current-window-configuration) nil))
-  (message "Compilation/debugging window set"))
+  (if console-window
+      (progn
+	(setq console-window nil)
+	(message "Compilation/debugging window unset"))
+    (progn
+      (setq console-window (selected-window))
+      ;; remember the current window configuration since gdb will
+      ;; destroy it
+      (set-register 0 (list (current-window-configuration) nil))
+      (message "Compilation/debugging window set"))))
 
 (defun select-console-window ()
   "Safely selects or sets the console window"
@@ -164,13 +169,20 @@
   (select-window console-window)
   (select-window (next-window)))
 
+
+(defvar make-operand-pattern
+  "^ *[^ ]*? +\\(?:-[^ ]*\\)* \\([A-Za-z0-9_-]*\\(?:\.[A-Za-z0-9]*\\)?\\)")
+
 (defun wrapped-compile (dwim)
   (sit-for 0.1)
   (setq compilation-read-command (not dwim))
-  (select-console-window)
+  (when console-window
+    (select-console-window))
   (cd project-directory)
   (call-interactively 'compile)
-  (sit-for 1))
+  (set-buffer "*compilation*")
+  (string-match make-operand-pattern compile-command)
+  (rename-buffer (format "*compilation-%s*" (match-string 1 compile-command))))
 
 (defun compile-dwim ()
   (interactive)
