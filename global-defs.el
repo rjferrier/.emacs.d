@@ -170,12 +170,12 @@
       (set-register 0 (list (current-window-configuration) nil))
       (message "Compilation/debugging window set"))))
 
-(defun select-console-window ()
-  "Safely selects or sets the console window"
-  (interactive)
-  (condition-case nil
-      (select-window console-window)
-    (error (set-console-window))))
+;; (defun select-console-window ()
+;;   "Safely selects or sets the console window"
+;;   (interactive)
+;;   (condition-case nil
+;;       (select-window console-window)
+;;     (error (set-console-window))))
 
 (defadvice next-error (before error-in-other-window activate)
   (select-window console-window)
@@ -189,7 +189,7 @@
   (sit-for 0.1)
   (setq compilation-read-command (not dwim))
   (when console-window
-    (select-console-window))
+    (select-window console-window))
   (cd project-directory)
   (call-interactively 'compile)
   (set-buffer "*compilation*")
@@ -207,7 +207,8 @@
 
 (defun wrapped-debug ()
   (interactive)
-  (select-console-window)
+  (when console-window
+    (select-window console-window))
   (cd project-directory)
   (condition-case nil
       (call-interactively 'gud-gdb)
