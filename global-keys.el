@@ -191,6 +191,11 @@
 
 ;; code elements
 (define-key global-map (kbd "<A-return>") 'contents)
+(define-key global-map (kbd "A-7") 'find-tag)
+(define-key global-map (kbd "A-8")
+  (lambda () (interactive) (find-tag (pop-tag-mark) t)))
+(define-key global-map (kbd "A-&") 'pop-tag-mark)
+
 
 ;; misc
 (define-key global-map (kbd "A-f") 'new-frame)
