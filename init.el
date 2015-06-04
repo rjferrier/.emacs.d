@@ -32,6 +32,9 @@
     (load custom-file)
   (write-region "" nil custom-file))
 
+;; environment variables
+(setenv "PYTHONPATH" (substitute-in-file-name "$HOME"))
+
 ;; Windows-specific
 (defconst in-win32
   (or 
@@ -75,6 +78,8 @@
 	try-expand-line
 	try-complete-lisp-symbol-partially
 	try-complete-lisp-symbol))
+
+
 
 ;;; WINDMOVE/FRAMEMOVE
 
@@ -150,3 +155,4 @@
   (before whole-line-or-region-yank activate)
   (when (region-active-p)
     (delete-region (region-beginning) (region-end) )))
+(put 'dired-find-alternate-file 'disabled nil)
