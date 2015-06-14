@@ -438,6 +438,11 @@ name of the buffer is xyz or *xyz-contents*, returns xyz."
   (select-window (next-window))
   (shell))
 
+(defun create-tags ()
+  (interactive)
+  (message (concat "Generating tags in " project-directory))
+  (shell-command (concat "ctags -eR " project-directory)))
+
 
 ;;; END
 (provide 'global-defs)

@@ -191,11 +191,13 @@
 
 ;; code elements
 (define-key global-map (kbd "<A-return>") 'contents)
+
+;; tags
+(define-key global-map (kbd "A-c 7") 'create-tags)
 (define-key global-map (kbd "A-7") 'find-tag)
 (define-key global-map (kbd "A-8")
   (lambda () (interactive) (find-tag (pop-tag-mark) t)))
 (define-key global-map (kbd "A-&") 'pop-tag-mark)
-
 
 ;; misc
 (define-key global-map (kbd "A-f") 'new-frame)
@@ -206,7 +208,6 @@
 (define-key global-map (kbd "A-c t") 'launch-terminal-here)
 (define-key global-map (kbd "A-c e") 'ediff-buffers)
 (define-key global-map (kbd "A-x A-x") 'execute-extended-command)
-
 
 ;; compilation and debugging
 (define-key global-map (kbd "A-<SPC>") 'compile-dwim)
