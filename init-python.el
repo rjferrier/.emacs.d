@@ -2,8 +2,7 @@
 
 
 (setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args "-i --pylab --profile=dev")
+ python-shell-interpreter "ipython")
 
 
 (eval-after-load "python"
@@ -14,7 +13,7 @@
 
      ;; local key bindings
      (define-key python-mode-map (kbd "<A-H-SPC>")
-       'python-send-buffer)
+       'python-shell-send-buffer)
      ))
 
 (add-hook
