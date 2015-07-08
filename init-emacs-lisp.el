@@ -40,31 +40,10 @@ region or buffer."
       (message result))))
 
 
-;; ;; key bindings
-;; (let* ((el-mode-maps
-;; 	'(emacs-lisp-mode-map lisp-interaction-mode-map))
-;;        el-mode-map (car el-mode-maps))
-;;   (while el-mode-maps
-;;     (setq el-mode-map (car el-mode-maps))
-  
-;;     (define-key el-mode-map (kbd "<A-H-SPC>")
-;;       'elisp-evaluate-dwim)
-;;     (define-key el-mode-map (kbd "A-H-d <A-H-SPC>")
-;;       'elisp-define-foo)
-
-;;     (setq el-mode-maps (cdr el-mode-maps))))
-
-;; key bindings - emacs-lisp mode
-(define-key emacs-lisp-mode-map (kbd "<A-H-SPC>")
-  'elisp-evaluate-dwim)
-(define-key emacs-lisp-mode-map (kbd "A-H-d <A-H-SPC>")
-  'elisp-define-foo)
-
-;; key bindings - lisp-interaction mode
-(define-key lisp-interaction-mode-map (kbd "<A-H-SPC>")
-  'elisp-evaluate-dwim)
-(define-key lisp-interaction-mode-map (kbd "A-H-d <A-H-SPC>")
-  'elisp-define-foo)
+;; make these bindings global as it may be useful to have them in
+;; other modes
+(define-key global-map (kbd "H-s <H-SPC>") 'elisp-evaluate-dwim)
+(define-key global-map (kbd "H-s <SPC>") 'elisp-define-foo)
 
 
 (add-hook
