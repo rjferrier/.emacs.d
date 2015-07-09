@@ -2,12 +2,13 @@
 ;;; FIRST THINGS FIRST
 
 ;; add directories to the load path
-(add-to-list 'load-path user-emacs-directory)
+(setq user-lisp-directory (concat user-emacs-directory "/lisp/"))
+(add-to-list 'load-path user-lisp-directory)
 (let ((default-directory user-emacs-directory))
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; load init-*.el files
-(let ((file (directory-files user-emacs-directory t "^init-.*\.el$")))
+(let ((file (directory-files user-lisp-directory t "^init-.*\.el$")))
   (while file
     (load-file (car file))
     (setq file (cdr file))))
@@ -51,6 +52,12 @@
 	w32-apps-modifier 'hyper)
   (w32-register-hot-key [H-<SPC>]))
 
+
+;;; REPOSITORY MANAGEMENT
+
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/") t)
 
 ;;; BASIC ENVIRONMENT
 
