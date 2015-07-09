@@ -25,6 +25,12 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain))
 
+(custom-set-faces
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
+ '(font-latex-sectioning-5-face ((((class color) (background dark)) (:inherit variable-pitch :foreground "white" :weight bold))))
+ '(font-lock-keyword-face ((((class color) (min-colors 88) (background dark)) (:foreground "PaleVioletRed1"))))
+ '(region ((t (:background "gray40" :foreground "white")))))
+
 ;; ... but allow the user to override these with system-dependent
 ;; customisations.  These will reside in a separate file and will not
 ;; be checked into the repository
