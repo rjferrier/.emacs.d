@@ -42,8 +42,8 @@ region or buffer."
 
 ;; make these bindings global as it may be useful to have them in
 ;; other modes
-(define-key global-map (kbd "H-s <H-SPC>") 'elisp-evaluate-dwim)
-(define-key global-map (kbd "H-s <SPC>") 'elisp-define-foo)
+(define-key global-map (kbd "<A-H-SPC>") 'elisp-evaluate-dwim)
+(define-key global-map (kbd "A-H-s <A-H-SPC>") 'elisp-define-foo)
 
 
 (add-hook

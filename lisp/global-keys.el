@@ -76,6 +76,9 @@
 (define-key global-map (kbd "H-s g") 'goto-line)
 (define-key global-map (kbd "H-s G") 'goto-char)
 
+(define-key global-map (kbd "<H-mouse-4>") 'text-scale-increase)
+(define-key global-map (kbd "<H-mouse-5>") 'text-scale-decrease)
+
 (define-key global-map (kbd "<H-mouse-3>") 'artist-mode)
 
 
@@ -207,6 +210,7 @@
 (define-key global-map (kbd "A-c h") 'launch-nautilus-here)
 (define-key global-map (kbd "A-c t") 'launch-terminal-here)
 (define-key global-map (kbd "A-c e") 'ediff-buffers)
+(define-key global-map (kbd "A-c E") 'ediff-buffers3)
 (define-key global-map (kbd "A-x A-x") 'execute-extended-command)
 
 ;; compilation and debugging
