@@ -12,7 +12,7 @@
      (setq python-fill-docstring-style 'symmetric)
 
      ;; local key bindings
-     (define-key python-mode-map (kbd "<A-H-SPC>")
+     (define-key python-mode-map (kbd "A-s <A-SPC>")
        'python-shell-send-buffer)
      ))
 

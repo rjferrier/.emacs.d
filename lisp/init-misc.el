@@ -3,7 +3,7 @@
 
 (eval-after-load "dired"
     '(progn
-       (define-key dired-mode-map (kbd "H-s H-8") 'dired-do-isearch-regexp)))
+       (define-key dired-mode-map (kbd "A-c A-7") 'dired-do-isearch-regexp)))
 
 
 ;;; SHELL & SHELL SCRIPT
@@ -13,9 +13,9 @@
 
 (eval-after-load "shell"
   '(progn
-     (define-key shell-mode-map (kbd "H-p")
+     (define-key shell-mode-map (kbd "A-p")
        '(lambda () (interactive) (call-interactively 'comint-previous-input)))
-     (define-key shell-mode-map (kbd "H-P")
+     (define-key shell-mode-map (kbd "A-P")
        '(lambda () (interactive) (call-interactively 'comint-next-input)))))
 
 
