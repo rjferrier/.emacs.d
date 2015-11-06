@@ -120,14 +120,6 @@
 
 (define-key global-map (kbd "<A-mouse-3>") 'artist-mode)
 
-
-;; windows resizing
-(define-key global-map (kbd "A-e A-p")
-  '(lambda () (interactive) (enlarge-window 1)))
-(define-key global-map (kbd "A-e A-;")
-  '(lambda () (interactive) (enlarge-window-horizontally 1)))
-(define-key global-map (kbd "A-e '") 'balance-windows-area)
-
 ;; code navigation
 (define-key global-map (kbd "A-s A-i") 'navigate-1-prev)
 (define-key global-map (kbd "A-s A-k") 'navigate-1-next)
@@ -142,13 +134,21 @@
   (lambda () (interactive) (copy-buffer-file-name t)))
 
 
-;;; ALT-KEYS: file- and buffer-related things
+;;; file- and buffer-related things
 
 ;; windows splitting and merging
-(define-key global-map (kbd "A-e ;") 'split-window-horizontally)
-(define-key global-map (kbd "A-e p") 'split-window-vertically)
+(define-key global-map (kbd "A-e A-;") 'split-window-horizontally)
+(define-key global-map (kbd "A-e A-/") 'split-window-vertically)
 (define-key global-map (kbd "A-e <A-backspace>") 'delete-window)
 (define-key global-map (kbd "A-e <backspace>") 'delete-other-windows)
+
+;; windows resizing
+(define-key global-map (kbd "A-w A-/")
+  '(lambda () (interactive) (enlarge-window 1)))
+(define-key global-map (kbd "A-w A-;")
+  '(lambda () (interactive) (enlarge-window-horizontally 1)))
+(define-key global-map (kbd "A-w A-'") 'balance-windows-area)
+
 
 ;; windows/buffer motion
 (define-key global-map (kbd "A-e A-i") 'windmove-up)
@@ -176,7 +176,6 @@
 ;; accessing files and buffers
 (define-key global-map (kbd "A-e A-u") 
   '(lambda () (interactive) (dired default-directory)))
-(define-key global-map (kbd "A-e A-o") 'wrapped-revert-buffer)
 (define-key global-map (kbd "A-e A-y") 'ido-find-file)
 (define-key global-map (kbd "A-e A-h") 'switch-to-buffer)
 (define-key global-map (kbd "A-e A-n") 'save-buffer)
