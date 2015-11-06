@@ -97,20 +97,20 @@
   (lambda () (interactive) (message (last-element level-3-regexp))))
 
 ;; useful insertions
-(define-key global-map (kbd "A-e 0")
+(define-key global-map (kbd "A-a 0")
   (lambda () (interactive) (insert (last-element contents-level-regexp))))
-(define-key global-map (kbd "A-e 1")
+(define-key global-map (kbd "A-a 1")
   (lambda () (interactive) (insert (last-element level-1-regexp))))
-(define-key global-map (kbd "A-e 2")
+(define-key global-map (kbd "A-a 2")
   (lambda () (interactive) (insert (last-element level-2-regexp))))
-(define-key global-map (kbd "A-e 3")
+(define-key global-map (kbd "A-a 3")
   (lambda () (interactive) (insert (last-element level-3-regexp))))
 
 ;; misc editing
 (define-key global-map (kbd "A-<SPC>") 'hippie-expand)
 (define-key global-map (kbd "<A-backspace>") 'undo)
-(define-key global-map (kbd "A-d A-d") 'cua-set-mark)
-(define-key global-map (kbd "A-d A-s") 'exchange-point-and-mark)
+(define-key global-map (kbd "A-;") 'cua-set-mark)
+(define-key global-map (kbd "A-d A-d") 'exchange-point-and-mark)
 (define-key global-map (kbd "A-d g") 'goto-line)
 (define-key global-map (kbd "A-d G") 'goto-char)
 (define-key global-map (kbd "A-d '") 'toggle-fill-column)
@@ -122,11 +122,11 @@
 
 
 ;; windows resizing
-(define-key global-map (kbd "A-a A-p")
+(define-key global-map (kbd "A-e A-p")
   '(lambda () (interactive) (enlarge-window 1)))
-(define-key global-map (kbd "A-a A-;")
+(define-key global-map (kbd "A-e A-;")
   '(lambda () (interactive) (enlarge-window-horizontally 1)))
-(define-key global-map (kbd "A-a '") 'balance-windows-area)
+(define-key global-map (kbd "A-e '") 'balance-windows-area)
 
 ;; code navigation
 (define-key global-map (kbd "A-s A-i") 'navigate-1-prev)
@@ -137,62 +137,62 @@
 (define-key global-map (kbd "A-s A-l") 'navigate-3-next)
 
 ;; misc buffer-related
-(define-key global-map (kbd "A-a A-d ,") 'copy-buffer-file-name)
-(define-key global-map (kbd "A-a A-d <") 
+(define-key global-map (kbd "A-e A-d ,") 'copy-buffer-file-name)
+(define-key global-map (kbd "A-e A-d <") 
   (lambda () (interactive) (copy-buffer-file-name t)))
 
 
 ;;; ALT-KEYS: file- and buffer-related things
 
 ;; windows splitting and merging
-(define-key global-map (kbd "A-a ;") 'split-window-horizontally)
-(define-key global-map (kbd "A-a p") 'split-window-vertically)
-(define-key global-map (kbd "A-a <A-backspace>") 'delete-window)
-(define-key global-map (kbd "A-a <backspace>") 'delete-other-windows)
+(define-key global-map (kbd "A-e ;") 'split-window-horizontally)
+(define-key global-map (kbd "A-e p") 'split-window-vertically)
+(define-key global-map (kbd "A-e <A-backspace>") 'delete-window)
+(define-key global-map (kbd "A-e <backspace>") 'delete-other-windows)
 
 ;; windows/buffer motion
-(define-key global-map (kbd "A-a A-i") 'windmove-up)
-(define-key global-map (kbd "A-a A-k") 'windmove-down)
-(define-key global-map (kbd "A-a A-j") 'windmove-left)
-(define-key global-map (kbd "A-a A-l") 'windmove-right)
+(define-key global-map (kbd "A-e A-i") 'windmove-up)
+(define-key global-map (kbd "A-e A-k") 'windmove-down)
+(define-key global-map (kbd "A-e A-j") 'windmove-left)
+(define-key global-map (kbd "A-e A-l") 'windmove-right)
 
 (define-key global-map (kbd "<A-up>") 'windmove-up)
 (define-key global-map (kbd "<A-down>") 'windmove-down)
 (define-key global-map (kbd "<A-left>") 'windmove-left)
 (define-key global-map (kbd "<A-right>") 'windmove-right)
-(define-key global-map (kbd "A-a <A-up>") 'windmove-buf-move-up)
-(define-key global-map (kbd "A-a <A-down>") 'windmove-buf-move-down)
-(define-key global-map (kbd "A-a <A-left>") 'windmove-buf-move-left)
-(define-key global-map (kbd "A-a <A-right>") 'windmove-buf-move-right)
-(define-key global-map (kbd "A-a <up>") 'windmove-buf-copy-and-move-up)
-(define-key global-map (kbd "A-a <down>") 'windmove-buf-copy-and-move-down)
-(define-key global-map (kbd "A-a <left>") 'windmove-buf-copy-and-move-left)
-(define-key global-map (kbd "A-a <right>") 'windmove-buf-copy-and-move-right)
-(define-key global-map (kbd "A-a <S-up>") 'windmove-buf-swap-up)
-(define-key global-map (kbd "A-a <S-down>") 'windmove-buf-swap-down)
-(define-key global-map (kbd "A-a <S-left>") 'windmove-buf-swap-left)
-(define-key global-map (kbd "A-a <S-right>") 'windmove-buf-swap-right)
+(define-key global-map (kbd "A-e <A-up>") 'windmove-buf-move-up)
+(define-key global-map (kbd "A-e <A-down>") 'windmove-buf-move-down)
+(define-key global-map (kbd "A-e <A-left>") 'windmove-buf-move-left)
+(define-key global-map (kbd "A-e <A-right>") 'windmove-buf-move-right)
+(define-key global-map (kbd "A-e <up>") 'windmove-buf-copy-and-move-up)
+(define-key global-map (kbd "A-e <down>") 'windmove-buf-copy-and-move-down)
+(define-key global-map (kbd "A-e <left>") 'windmove-buf-copy-and-move-left)
+(define-key global-map (kbd "A-e <right>") 'windmove-buf-copy-and-move-right)
+(define-key global-map (kbd "A-e <S-up>") 'windmove-buf-swap-up)
+(define-key global-map (kbd "A-e <S-down>") 'windmove-buf-swap-down)
+(define-key global-map (kbd "A-e <S-left>") 'windmove-buf-swap-left)
+(define-key global-map (kbd "A-e <S-right>") 'windmove-buf-swap-right)
 
 ;; accessing files and buffers
-(define-key global-map (kbd "A-a A-u") 
+(define-key global-map (kbd "A-e A-u") 
   '(lambda () (interactive) (dired default-directory)))
-(define-key global-map (kbd "A-a A-o") 'wrapped-revert-buffer)
-(define-key global-map (kbd "A-a A-y") 'ido-find-file)
-(define-key global-map (kbd "A-a A-h") 'switch-to-buffer)
-(define-key global-map (kbd "A-a A-n") 'save-buffer)
-(define-key global-map (kbd "A-a A-m") 'save-and-kill-buffer)
+(define-key global-map (kbd "A-e A-o") 'wrapped-revert-buffer)
+(define-key global-map (kbd "A-e A-y") 'ido-find-file)
+(define-key global-map (kbd "A-e A-h") 'switch-to-buffer)
+(define-key global-map (kbd "A-e A-n") 'save-buffer)
+(define-key global-map (kbd "A-e A-m") 'save-and-kill-buffer)
 
-(define-key global-map (kbd "A-a u") 'ido-dired)
-(define-key global-map (kbd "A-a y") 'wrapped-find-file)
-(define-key global-map (kbd "A-a h") 'ibuffer)
-(define-key global-map (kbd "A-a n") 'wrapped-write-file)
-(define-key global-map (kbd "A-a m") 'wrapped-kill-buffer)
+(define-key global-map (kbd "A-e u") 'ido-dired)
+(define-key global-map (kbd "A-e y") 'wrapped-find-file)
+(define-key global-map (kbd "A-e h") 'ibuffer)
+(define-key global-map (kbd "A-e n") 'wrapped-write-file)
+(define-key global-map (kbd "A-e m") 'wrapped-kill-buffer)
 
-(define-key global-map (kbd "A-a RET") 'set-project-dir)
+(define-key global-map (kbd "A-e RET") 'set-project-dir)
 
-(define-key global-map (kbd "A-a A-M") 'save-and-kill-buffer-and-window)
-(define-key global-map (kbd "A-a M") 'kill-buffer-and-window)
-(define-key global-map (kbd "A-a U") 
+(define-key global-map (kbd "A-e A-M") 'save-and-kill-buffer-and-window)
+(define-key global-map (kbd "A-e M") 'kill-buffer-and-window)
+(define-key global-map (kbd "A-e U") 
   '(lambda () (interactive) (dired user-emacs-directory)))
 
 
@@ -200,26 +200,26 @@
 (define-key global-map (kbd "<A-return>") 'contents)
 
 ;; misc
-(define-key global-map (kbd "A-a f") 'new-frame)
-(define-key global-map (kbd "A-a A-s") 'shell)
-(define-key global-map (kbd "A-a s") 'shell-in-split-window)
-(define-key global-map (kbd "A-a n") 'launch-nautilus-here)
-(define-key global-map (kbd "A-a t") 'launch-terminal-here)
-(define-key global-map (kbd "A-a e") 'ediff-buffers)
-(define-key global-map (kbd "A-a E") 'ediff-buffers3)
+(define-key global-map (kbd "A-e f") 'new-frame)
+(define-key global-map (kbd "A-e A-s") 'shell)
+(define-key global-map (kbd "A-e s") 'shell-in-split-window)
+(define-key global-map (kbd "A-e n") 'launch-nautilus-here)
+(define-key global-map (kbd "A-e t") 'launch-terminal-here)
+(define-key global-map (kbd "A-e e") 'ediff-buffers)
+(define-key global-map (kbd "A-e E") 'ediff-buffers3)
 
 (define-key global-map (kbd "A-q") 'keyboard-escape-quit)
 (define-key global-map (kbd "A-x A-x") 'execute-extended-command)
 
 
 ;; compilation and debugging
-(define-key global-map (kbd "A-a A-<SPC>") 'compile-dwim)
-(define-key global-map (kbd "A-a <SPC>") 'compile-with-query)
-(define-key global-map (kbd "A-a o") 'set-console-window)
-(define-key global-map (kbd "A-a d") 'wrapped-debug)
-(define-key global-map (kbd "A-a A-.") 'next-error)
-(define-key global-map (kbd "A-a A-,") 'previous-error)
-(define-key global-map (kbd "A-a ,") 'first-error)
+(define-key global-map (kbd "A-e A-<SPC>") 'compile-dwim)
+(define-key global-map (kbd "A-e <SPC>") 'compile-with-query)
+(define-key global-map (kbd "A-e o") 'set-console-window)
+(define-key global-map (kbd "A-e d") 'wrapped-debug)
+(define-key global-map (kbd "A-e A-.") 'next-error)
+(define-key global-map (kbd "A-e A-,") 'previous-error)
+(define-key global-map (kbd "A-e ,") 'first-error)
 
 
 ;;; END
