@@ -97,18 +97,17 @@
   (lambda () (interactive) (message (last-element level-3-regexp))))
 
 ;; useful insertions
-(define-key global-map (kbd "A-a 0")
+(define-key global-map (kbd "A-w 0")
   (lambda () (interactive) (insert (last-element contents-level-regexp))))
-(define-key global-map (kbd "A-a 1")
+(define-key global-map (kbd "A-w 1")
   (lambda () (interactive) (insert (last-element level-1-regexp))))
-(define-key global-map (kbd "A-a 2")
+(define-key global-map (kbd "A-w 2")
   (lambda () (interactive) (insert (last-element level-2-regexp))))
-(define-key global-map (kbd "A-a 3")
+(define-key global-map (kbd "A-w 3")
   (lambda () (interactive) (insert (last-element level-3-regexp))))
 
 ;; misc editing
-(define-key global-map (kbd "A-;") 'cua-set-mark)
-(define-key global-map (kbd "A-z") 'cua-set-mark)
+(define-key global-map (kbd "A-a") 'cua-set-mark)
 (define-key global-map (kbd "A-<SPC>") 'hippie-expand)
 (define-key global-map (kbd "<A-backspace>") 'undo)
 (define-key global-map (kbd "A-d A-d") 'exchange-point-and-mark)
@@ -176,6 +175,7 @@
 (define-key global-map (kbd "A-e A-h") 'switch-to-buffer)
 (define-key global-map (kbd "A-e A-n") 'save-buffer)
 (define-key global-map (kbd "A-e A-m") 'save-and-kill-buffer)
+(define-key global-map (kbd "A-e A-p") 'wrapped-revert-buffer)
 
 (define-key global-map (kbd "A-e u") 'ido-dired)
 (define-key global-map (kbd "A-e y") 'wrapped-find-file)
