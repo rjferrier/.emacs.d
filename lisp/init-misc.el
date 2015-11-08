@@ -3,7 +3,7 @@
 
 (eval-after-load "dired"
     '(progn
-       (define-key dired-mode-map (kbd "A-c A-7") 'dired-do-isearch-regexp)))
+       (define-key dired-mode-map (kbd "A-e A-7") 'dired-do-isearch-regexp)))
 
 
 ;;; SHELL & SHELL SCRIPT
