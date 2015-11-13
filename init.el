@@ -163,3 +163,7 @@
   (when (region-active-p)
     (delete-region (region-beginning) (region-end) )))
 (put 'dired-find-alternate-file 'disabled nil)
+
+;;; ESHELL EXTENSIONS
+
+(require 'multi-eshell)

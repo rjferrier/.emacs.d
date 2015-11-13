@@ -357,11 +357,11 @@ name of the buffer is xyz or *xyz-contents*, returns xyz."
     (delete-region (region-beginning) (region-end) ))
   (format-time-string "%Y-%m-%dT%T"))
 
-(defun shell-in-split-window ()
+(defun eshell-in-split-window ()
   (interactive)
   (split-window)
   (select-window (next-window))
-  (shell))
+  (eshell))
 
 (defun create-tags ()
   (interactive)

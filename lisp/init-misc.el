@@ -18,4 +18,13 @@
      (define-key shell-mode-map (kbd "A-P")
        '(lambda () (interactive) (call-interactively 'comint-next-input)))))
 
+(add-hook
+ 'eshell-mode-hook
+ (lambda ()
+   (progn
+     (local-set-key (kbd "A-p")
+       '(lambda () (interactive) (call-interactively 'eshell-previous-input)))
+     (local-set-key (kbd "A-P")
+       '(lambda () (interactive) (call-interactively 'eshell-next-input))))))
+
 

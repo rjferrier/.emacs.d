@@ -196,8 +196,9 @@
 
 ;; misc
 (define-key global-map (kbd "A-e f") 'new-frame)
-(define-key global-map (kbd "A-e A-s") 'shell)
-(define-key global-map (kbd "A-e s") 'shell-in-split-window)
+(define-key global-map (kbd "A-e s") 'multi-eshell)
+(define-key global-map (kbd "A-e A-s") 'multi-eshell-switch)
+(define-key global-map (kbd "A-e S") 'eshell-in-split-window)
 (define-key global-map (kbd "A-e n") 'launch-nautilus-here)
 (define-key global-map (kbd "A-e t") 'launch-terminal-here)
 (define-key global-map (kbd "A-e e") 'ediff-buffers)
