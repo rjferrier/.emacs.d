@@ -143,10 +143,14 @@
 (define-key global-map (kbd "A-e <backspace>") 'delete-other-windows)
 
 ;; windows resizing
-(define-key global-map (kbd "A-w A-/")
+(define-key global-map (kbd "A-/")
   '(lambda () (interactive) (enlarge-window 1)))
-(define-key global-map (kbd "A-w A-;")
+(define-key global-map (kbd "A-;")
   '(lambda () (interactive) (enlarge-window-horizontally 1)))
+(define-key global-map (kbd "A-|")
+  '(lambda () (interactive) (enlarge-window -1)))
+(define-key global-map (kbd "A-:")
+  '(lambda () (interactive) (enlarge-window-horizontally -1)))
 (define-key global-map (kbd "A-w A-'") 'balance-windows-area)
 
 
