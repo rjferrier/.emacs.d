@@ -1,7 +1,9 @@
 (require 'global-defs)
+(require 'multi-eshell)
 (require 'whole-line-or-region)
 (require 'wrapped-windmove)
 (require 'wrapped-highlight-symbol)
+(require 'zoom-frm)
 
 
 ;;; text navigation and editing
@@ -13,12 +15,14 @@
 (define-key global-map (kbd "A-l") 'forward-char)
 (define-key global-map (kbd "A-u") 'subword-backward)
 (define-key global-map (kbd "A-o") 'subword-forward)
-(define-key global-map (kbd "A-y") 'backward-delete-char-untabify)
-(define-key global-map (kbd "A-h") 'delete-char)
+(define-key global-map (kbd "A-h") 'backward-delete-char-untabify)
+(define-key global-map (kbd "A-y") 'subword-backward-kill)
 (define-key global-map (kbd "A-n") 'reindent-then-newline-and-indent)
 (define-key global-map (kbd "A-.") 'whole-line-or-region-kill-region)
 (define-key global-map (kbd "A-,") 'whole-line-or-region-kill-ring-save)
 (define-key global-map (kbd "A-m") 'whole-line-or-region-yank)
+(define-key global-map (kbd "A-H") 'delete-char)
+(define-key global-map (kbd "A-Y") 'subword-kill)
 (define-key global-map (kbd "A-M") 'yank-pop)
 
 (define-key global-map (kbd "A-d A-i") 'beginning-of-buffer)
@@ -27,8 +31,6 @@
 (define-key global-map (kbd "A-d A-k") 'end-of-buffer)
 (define-key global-map (kbd "A-d A-u") 'backward-paragraph)
 (define-key global-map (kbd "A-d A-o") 'forward-paragraph)
-(define-key global-map (kbd "A-d A-y") 'subword-backward-kill)
-(define-key global-map (kbd "A-d A-h") 'subword-kill)
 (define-key global-map (kbd "A-d A-l") 'move-end-of-line)
 (define-key global-map (kbd "A-d A-n") 'fill-paragraph)
 
@@ -119,6 +121,9 @@
 (define-key global-map (kbd "<A-mouse-5>") 'text-scale-decrease)
 
 (define-key global-map (kbd "<A-mouse-3>") 'artist-mode)
+
+(define-key global-map (kbd "A-=") 'zoom-in)
+(define-key global-map (kbd "A--") 'zoom-out)
 
 ;; code navigation
 (define-key global-map (kbd "A-s A-i") 'navigate-1-prev)
