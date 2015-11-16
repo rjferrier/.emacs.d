@@ -71,7 +71,7 @@
  (lambda ()
    (define-key isearch-mode-map (kbd "A-7") 'isearch-repeat-forward))
    (define-key isearch-mode-map (kbd "A-&") 'isearch-repeat-backward))
-(define-key global-map (kbd "A-d A-7") 'highlight-symbol-at-point)
+(define-key global-map (kbd "A-d A-8") 'highlight-symbol-at-point)
 
 (define-key global-map (kbd "A-d 7") 'query-replace-regexp)
 (define-key global-map (kbd "A-d 8") 'highlight-symbol-query-replace)
@@ -109,7 +109,8 @@
   (lambda () (interactive) (insert (last-element level-3-regexp))))
 
 ;; misc editing
-(define-key global-map (kbd "A-a") 'cua-set-mark)
+(define-key global-map (kbd "A-;") 'cua-set-mark)
+(define-key global-map (kbd "A-d A-;") 'cua-set-rectangle-mark)
 (define-key global-map (kbd "A-<SPC>") 'hippie-expand)
 (define-key global-map (kbd "<A-backspace>") 'undo)
 (define-key global-map (kbd "A-d A-d") 'exchange-point-and-mark)
@@ -142,7 +143,7 @@
 ;;; file- and buffer-related things
 
 ;; windows splitting and merging
-(define-key global-map (kbd "A-e A-;") 'split-window-horizontally)
+(define-key global-map (kbd "A-e A-'") 'split-window-horizontally)
 (define-key global-map (kbd "A-e A-/") 'split-window-vertically)
 (define-key global-map (kbd "A-e <A-backspace>") 'delete-window)
 (define-key global-map (kbd "A-e <backspace>") 'delete-other-windows)
@@ -150,13 +151,13 @@
 ;; windows resizing
 (define-key global-map (kbd "A-/")
   '(lambda () (interactive) (enlarge-window 1)))
-(define-key global-map (kbd "A-;")
+(define-key global-map (kbd "A-'")
   '(lambda () (interactive) (enlarge-window-horizontally 1)))
 (define-key global-map (kbd "A-|")
   '(lambda () (interactive) (enlarge-window -1)))
-(define-key global-map (kbd "A-:")
+(define-key global-map (kbd "A-@")
   '(lambda () (interactive) (enlarge-window-horizontally -1)))
-(define-key global-map (kbd "A-w A-'") 'balance-windows-area)
+(define-key global-map (kbd "A-w A-;") 'balance-windows-area)
 
 
 ;; windows/buffer motion
