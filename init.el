@@ -36,16 +36,8 @@
 ;; environment variables
 (setq env-file (concat (substitute-in-file-name "$HOME")
 		       "/.env.d/env.el"))
-(if (file-exists-p env-file)
-    (load env-file)
-  (write-region "" nil env-file))
-
-;; (let ((file '((concat user-emacs-directory "custom.el")
-;; 	      (concat (substitute-in-file-name "$HOME")
-;; 		      "/.env.d/env.el"))))
-;;   (while file
-;;     (load-file (car file))
-;;     (setq file (cdr file))))
+(when (file-exists-p env-file)
+   (load env-file))
 
 
 (setenv "PYTHONPATH" (substitute-in-file-name "$HOME"))
