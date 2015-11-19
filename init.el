@@ -25,6 +25,9 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain))
 
+(set-background-color "black") 
+(set-foreground-color "white")
+
 ;; ... but allow the user to override these with system-dependent
 ;; customisations.  These will reside in a separate file and will not
 ;; be checked into the repository
@@ -139,9 +142,9 @@
 
 ;;; BUFFER LIST/DIRED ENHANCEMENTS
 
-; can't remember what this does
-(require 'ibuf-ext)
-(add-to-list 'ibuffer-never-show-predicates "^\\*")
+;; ; hide ephemeral buffers
+;; (require 'ibuf-ext)
+;; (add-to-list 'ibuffer-never-show-predicates "^\\*")
 
 ; replace standard buffer list with iBuffer
 (setq ibuffer-shrink-to-minimum-size t)
