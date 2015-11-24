@@ -25,8 +25,8 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain))
 
-(set-background-color "black") 
-(set-foreground-color "white")
+(custom-set-faces
+ '(default ((t (:background "black" :foreground "white")))))
 
 ;; ... but allow the user to override these with system-dependent
 ;; customisations.  These will reside in a separate file and will not
