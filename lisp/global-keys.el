@@ -145,8 +145,8 @@
 ;; windows splitting and merging
 (define-key global-map (kbd "A-e A-'") 'split-window-horizontally)
 (define-key global-map (kbd "A-e A-/") 'split-window-vertically)
-(define-key global-map (kbd "A-e A-;") 'delete-window)
-(define-key global-map (kbd "A-e ;") 'delete-other-windows)
+(define-key global-map (kbd "A-e A-;") 'delete-other-windows)
+(define-key global-map (kbd "A-e ;") 'delete--window)
 
 ;; windows resizing
 (define-key global-map (kbd "A-/")
