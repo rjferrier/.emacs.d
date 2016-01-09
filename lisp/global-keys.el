@@ -24,6 +24,7 @@
 (define-key global-map (kbd "A-H") 'delete-char)
 (define-key global-map (kbd "A-Y") 'subword-kill)
 (define-key global-map (kbd "A-M") 'yank-pop)
+(define-key global-map (kbd "A-N") 'fill-paragraph)
 
 (define-key global-map (kbd "A-d A-i") 'beginning-of-buffer)
 (define-key global-map (kbd "A-d A-j") 'move-beginning-of-line)
@@ -32,7 +33,8 @@
 (define-key global-map (kbd "A-d A-u") 'backward-paragraph)
 (define-key global-map (kbd "A-d A-o") 'forward-paragraph)
 (define-key global-map (kbd "A-d A-l") 'move-end-of-line)
-(define-key global-map (kbd "A-d A-n") 'fill-paragraph)
+(define-key global-map (kbd "A-d A-n") 'split-line)
+(define-key global-map (kbd "A-d A-N") 'join-line)
 
 (define-key global-map (kbd "A-s A-;") 'comment-dwim)
 (define-key global-map (kbd "A-s ;") 'comment-set-column)
@@ -184,20 +186,20 @@
 
 
 ;; accessing files and buffers
-(define-key global-map (kbd "A-e A-y") 'ibuffer)
-(define-key global-map (kbd "A-e A-h") 
+(define-key global-map (kbd "A-e A-p") 'ibuffer)
+(define-key global-map (kbd "A-e A-y") 
   '(lambda () (interactive) (dired default-directory)))
-(define-key global-map (kbd "A-e A-n") 'wrapped-find-file)
-(define-key global-map (kbd "A-e A-m") 'save-buffer)
+(define-key global-map (kbd "A-e A-h") 'wrapped-find-file)
+(define-key global-map (kbd "A-e A-n") 'save-buffer)
 
-(define-key global-map (kbd "A-e y") 'switch-to-buffer)
-(define-key global-map (kbd "A-e h") 'ido-dired)
-(define-key global-map (kbd "A-e n") 'ido-find-file)
-(define-key global-map (kbd "A-e m") 'wrapped-write-file)
+(define-key global-map (kbd "A-e p") 'switch-to-buffer)
+(define-key global-map (kbd "A-e y") 'ido-dired)
+(define-key global-map (kbd "A-e h") 'ido-find-file)
+(define-key global-map (kbd "A-e n") 'wrapped-write-file)
 
-(define-key global-map (kbd "A-e H") 
+(define-key global-map (kbd "A-e Y") 
   '(lambda () (interactive) (dired user-emacs-directory)))
-(define-key global-map (kbd "A-e M") 'save-some-buffers)
+(define-key global-map (kbd "A-e N") 'save-some-buffers)
 
 (define-key global-map (kbd "A-e <A-backspace>") 'save-and-kill-buffer)
 (define-key global-map (kbd "A-e <backspace>") 'wrapped-kill-buffer)
