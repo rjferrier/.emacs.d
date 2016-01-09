@@ -1,0 +1,16 @@
+! Remap keys as follows:
+! Alt  -> Alt
+! Caps    -> F
+! Alt Gr  -> Caps
+! Windows -> Meta
+
+clear Mod1
+clear Mod3
+clear Mod4
+
+keycode 64 = Alt_L
+keycode 133 = Meta_L
+
+add Mod1 = Alt_L
+add Mod3 = Meta_L
+add Mod4 = Super_L Hyper_L
