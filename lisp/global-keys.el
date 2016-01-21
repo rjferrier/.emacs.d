@@ -33,8 +33,9 @@
 (define-key global-map (kbd "A-d A-u") 'backward-paragraph)
 (define-key global-map (kbd "A-d A-o") 'forward-paragraph)
 (define-key global-map (kbd "A-d A-l") 'move-end-of-line)
-(define-key global-map (kbd "A-d A-n") 'split-line)
-(define-key global-map (kbd "A-d A-N") 'join-line)
+
+(define-key global-map (kbd "A-d A-n") 'join-line)
+(define-key global-map (kbd "A-d n") 'split-line)
 
 (define-key global-map (kbd "A-7") 'backward-paragraph)
 (define-key global-map (kbd "A-8") 'forward-paragraph)
@@ -72,17 +73,17 @@
 ;; search and replace
 (define-key global-map (kbd "A-9") 'isearch-forward-regexp)
 (define-key global-map (kbd "A-(") 'isearch-backward-regexp)
-(define-key global-map (kbd "A-0") 'wrapped-next-symbol)
-(define-key global-map (kbd "A-)") 'wrapped-prev-symbol)
+(define-key global-map (kbd "A-p") 'wrapped-next-symbol)
+(define-key global-map (kbd "A-P") 'wrapped-prev-symbol)
 (add-hook
  'isearch-mode-hook
  (lambda ()
    (define-key isearch-mode-map (kbd "A-9") 'isearch-repeat-forward))
    (define-key isearch-mode-map (kbd "A-(") 'isearch-repeat-backward))
-(define-key global-map (kbd "A-d A-0") 'highlight-symbol-at-point)
+(define-key global-map (kbd "A-d A-p") 'highlight-symbol-at-point)
 
 (define-key global-map (kbd "A-d 9") 'query-replace-regexp)
-(define-key global-map (kbd "A-d 0") 'highlight-symbol-query-replace)
+(define-key global-map (kbd "A-d p") 'highlight-symbol-query-replace)
 
 ;; ;; tags
 ;; (define-key global-map (kbd "A-s <f7>") 'create-tags)
@@ -124,7 +125,8 @@
 (define-key global-map (kbd "A-d A-d") 'exchange-point-and-mark)
 (define-key global-map (kbd "A-d g") 'goto-line)
 (define-key global-map (kbd "A-d G") 'goto-char)
-(define-key global-map (kbd "A-d '") 'toggle-fill-column)
+(define-key global-map (kbd "A-d ;") 'set-fill-column)
+(define-key global-map (kbd "A-d :") 'toggle-fill-column)
 
 (define-key global-map (kbd "<A-mouse-4>") 'text-scale-increase)
 (define-key global-map (kbd "<A-mouse-5>") 'text-scale-decrease)
@@ -192,27 +194,27 @@
 
 
 ;; accessing files and buffers
-(define-key global-map (kbd "A-e A-p") 'ibuffer)
-(define-key global-map (kbd "A-e A-y") 
-  '(lambda () (interactive) (dired default-directory)))
-(define-key global-map (kbd "A-e A-h") 'wrapped-find-file)
+(define-key global-map (kbd "A-e A-p") 'switch-to-buffer)
+(define-key global-map (kbd "A-e A-y") 'ido-dired)
+(define-key global-map (kbd "A-e A-h") 'ido-find-file)
 (define-key global-map (kbd "A-e A-n") 'save-buffer)
+(define-key global-map (kbd "A-e A-m") 'save-and-kill-buffer)
+;; (define-key global-map (kbd "A-e A-<backspace>") 'wrapped-revert-buffer)
 
-(define-key global-map (kbd "A-e p") 'switch-to-buffer)
-(define-key global-map (kbd "A-e y") 'ido-dired)
-(define-key global-map (kbd "A-e h") 'ido-find-file)
+(define-key global-map (kbd "A-e p") 'ibuffer)
+(define-key global-map (kbd "A-e y") 
+  '(lambda () (interactive) (dired default-directory)))
+(define-key global-map (kbd "A-e h") 'wrapped-find-file)
 (define-key global-map (kbd "A-e n") 'wrapped-write-file)
+(define-key global-map (kbd "A-e m") 'wrapped-kill-buffer)
+
+(define-key global-map (kbd "A-w A-m") 'save-and-kill-buffer-and-window)
+(define-key global-map (kbd "A-w m") 'kill-buffer-and-window)
 
 (define-key global-map (kbd "A-e Y") 
   '(lambda () (interactive) (dired user-emacs-directory)))
 (define-key global-map (kbd "A-e N") 'save-some-buffers)
 
-(define-key global-map (kbd "A-e <A-backspace>") 'save-and-kill-buffer)
-(define-key global-map (kbd "A-e <backspace>") 'wrapped-kill-buffer)
-(define-key global-map (kbd "A-w <A-backspace>") 'save-and-kill-buffer-and-window)
-(define-key global-map (kbd "A-w <backspace>") 'kill-buffer-and-window)
-
-(define-key global-map (kbd "A-e r") 'revert-buffer)
 (define-key global-map (kbd "A-e RET") 'set-project-dir)
 
 
