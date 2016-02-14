@@ -73,24 +73,25 @@
 ;; search and replace
 (define-key global-map (kbd "A-9") 'isearch-forward-regexp)
 (define-key global-map (kbd "A-(") 'isearch-backward-regexp)
-(define-key global-map (kbd "A-p") 'wrapped-next-symbol)
-(define-key global-map (kbd "A-P") 'wrapped-prev-symbol)
 (add-hook
  'isearch-mode-hook
  (lambda ()
    (define-key isearch-mode-map (kbd "A-9") 'isearch-repeat-forward))
    (define-key isearch-mode-map (kbd "A-(") 'isearch-repeat-backward))
-(define-key global-map (kbd "A-d A-p") 'highlight-symbol-at-point)
-
 (define-key global-map (kbd "A-d 9") 'query-replace-regexp)
-(define-key global-map (kbd "A-d p") 'highlight-symbol-query-replace)
 
-;; ;; tags
-;; (define-key global-map (kbd "A-s <f7>") 'create-tags)
-;; (define-key global-map (kbd "A-s 7") 'find-tag)
-;; (define-key global-map (kbd "A-9")
-;;   (lambda () (interactive) (find-tag (pop-tag-mark) t)))
-;; (define-key global-map (kbd "A-(") 'pop-tag-mark)
+;; tags
+(define-key global-map (kbd "A-d 0") 'create-tags)
+(define-key global-map (kbd "A-d A-0") 'find-tag)
+(define-key global-map (kbd "A-0")
+  (lambda () (interactive) (find-tag (pop-tag-mark) t)))
+(define-key global-map (kbd "A-)") 'pop-tag-mark)
+
+;; symbols
+(define-key global-map (kbd "A-p") 'wrapped-next-symbol)
+(define-key global-map (kbd "A-P") 'wrapped-prev-symbol)
+(define-key global-map (kbd "A-s A-p") 'highlight-symbol-at-point)
+(define-key global-map (kbd "A-s p") 'highlight-symbol-query-replace)
 
 
 ;; useful messages
@@ -199,7 +200,7 @@
 (define-key global-map (kbd "A-e A-h") 'ido-find-file)
 (define-key global-map (kbd "A-e A-n") 'save-buffer)
 (define-key global-map (kbd "A-e A-m") 'save-and-kill-buffer)
-;; (define-key global-map (kbd "A-e A-<backspace>") 'wrapped-revert-buffer)
+(define-key global-map (kbd "A-e A-<backspace>") 'wrapped-revert-buffer)
 
 (define-key global-map (kbd "A-e p") 'ibuffer)
 (define-key global-map (kbd "A-e y") 
