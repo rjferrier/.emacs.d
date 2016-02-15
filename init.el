@@ -40,8 +40,6 @@
 		       "/.env.d/env.el"))
 (when (file-exists-p env-file)
    (load env-file))
-
-
 (setenv "PYTHONPATH" (substitute-in-file-name "$HOME"))
 
 ;; Windows-specific
@@ -72,9 +70,11 @@
 ;; get global functions and key bindings
 (require 'global-keys)
 
-;; prompt for the 'project directory'
+;; prompt for the 'project directory' then dired into here
 (add-hook 'after-init-hook
-	  (lambda () (call-interactively 'set-project-dir)))
+	  (lambda () (progn
+	      (call-interactively 'set-project-dir)
+	      (dired project-directory))))
 
 (global-auto-revert-mode t)
 (subword-mode t)

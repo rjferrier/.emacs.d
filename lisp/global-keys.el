@@ -34,7 +34,7 @@
 (define-key global-map (kbd "A-d A-o") 'forward-paragraph)
 (define-key global-map (kbd "A-d A-l") 'move-end-of-line)
 
-(define-key global-map (kbd "A-d A-n") 'join-line)
+(define-key global-map (kbd "A-d A-n") 'wrapped-join-line)
 (define-key global-map (kbd "A-d n") 'split-line)
 
 (define-key global-map (kbd "A-7") 'backward-paragraph)

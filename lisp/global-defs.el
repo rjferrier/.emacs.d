@@ -149,6 +149,11 @@
       (insert-char (car char) 1)
       (setq char (cdr char)))))
 
+(defun wrapped-join-line ()
+  (interactive)
+  (next-line)
+  (join-line))
+
 (defvar fill-column-1 80)
 (defvar fill-column-2 72)
 (defun toggle-fill-column ()
