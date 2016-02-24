@@ -13,7 +13,6 @@
     (load-file (car file))
     (setq file (cdr file))))
 
-
 ;; set some system-invariant customisations...
 (custom-set-variables
  '(column-number-mode t)
@@ -25,6 +24,9 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain))
 
+;; themes
+(add-to-list 'custom-theme-load-path
+	     (concat user-emacs-directory "/themes/"))
 (load-theme 'rjf t)
 
 ;; ... but allow the user to override these with system-dependent
