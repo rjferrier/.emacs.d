@@ -197,7 +197,8 @@
 
 ;; accessing files and buffers
 (define-key global-map (kbd "A-e A-p") 'switch-to-buffer)
-(define-key global-map (kbd "A-e A-y") 'ido-dired)
+(define-key global-map (kbd "A-e A-y") 
+  '(lambda () (interactive) (dired default-directory)))
 (define-key global-map (kbd "A-e A-h") 'ido-find-file)
 (define-key global-map (kbd "A-e A-n") 'save-buffer)
 (define-key global-map (kbd "A-e A-m") 'save-and-kill-buffer)
@@ -205,10 +206,11 @@
 
 (define-key global-map (kbd "A-e p") 'ibuffer)
 (define-key global-map (kbd "A-e y") 
-  '(lambda () (interactive) (dired default-directory)))
+  '(lambda () (interactive) (dired project-directory)))
 (define-key global-map (kbd "A-e h") 'wrapped-find-file)
 (define-key global-map (kbd "A-e n") 'wrapped-write-file)
 (define-key global-map (kbd "A-e m") 'wrapped-kill-buffer)
+(define-key global-map (kbd "A-e H") 'ido-dired)
 
 (define-key global-map (kbd "A-w A-m") 'save-and-kill-buffer-and-window)
 (define-key global-map (kbd "A-w m") 'kill-buffer-and-window)
@@ -232,7 +234,7 @@
 (define-key global-map (kbd "A-e D") 'ediff-buffers3)
 
 (define-key global-map (kbd "A-q") 'keyboard-escape-quit)
-(define-key global-map (kbd "A-x A-x") 'execute-extended-command)
+(define-key global-map (kbd "A-r") 'execute-extended-command)
 
 (define-key global-map (kbd "A-x n") 'launch-nautilus-here)
 (define-key global-map (kbd "A-x t") 'launch-terminal-here)
