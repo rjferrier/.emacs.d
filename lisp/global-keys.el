@@ -36,6 +36,7 @@
 
 (define-key global-map (kbd "A-d A-n") 'wrapped-join-line)
 (define-key global-map (kbd "A-d n") 'split-line)
+(define-key global-map (kbd "A-d N") 'unfill-paragraph)
 
 (define-key global-map (kbd "A-7") 'backward-paragraph)
 (define-key global-map (kbd "A-8") 'forward-paragraph)
@@ -121,6 +122,7 @@
 ;; misc editing
 (define-key global-map (kbd "A-;") 'cua-set-mark)
 (define-key global-map (kbd "A-a") 'cua-set-mark)
+(define-key global-map (kbd "A-d A-a") 'mark-whole-buffer)
 (define-key global-map (kbd "A-d A-;") 'cua-set-rectangle-mark)
 (define-key global-map (kbd "A-<SPC>") 'hippie-expand)
 (define-key global-map (kbd "<A-backspace>") 'undo)
@@ -157,8 +159,8 @@
 ;; windows splitting and merging
 (define-key global-map (kbd "A-e A-'") 'split-window-horizontally)
 (define-key global-map (kbd "A-e A-/") 'split-window-vertically)
-(define-key global-map (kbd "A-e A-;") 'delete-other-windows)
-(define-key global-map (kbd "A-e ;") 'delete-window)
+(define-key global-map (kbd "A-e A-;") 'delete-window)
+(define-key global-map (kbd "A-e ;") 'delete-other-windows)
 
 ;; windows resizing
 (define-key global-map (kbd "A-/")
@@ -201,7 +203,7 @@
   '(lambda () (interactive) (dired default-directory)))
 (define-key global-map (kbd "A-e A-h") 'ido-find-file)
 (define-key global-map (kbd "A-e A-n") 'save-buffer)
-(define-key global-map (kbd "A-e A-m") 'save-and-kill-buffer)
+(define-key global-map (kbd "A-e A-.") 'save-and-kill-buffer)
 (define-key global-map (kbd "A-e A-<backspace>") 'wrapped-revert-buffer)
 
 (define-key global-map (kbd "A-e p") 'ibuffer)
@@ -209,11 +211,11 @@
   '(lambda () (interactive) (dired project-directory)))
 (define-key global-map (kbd "A-e h") 'wrapped-find-file)
 (define-key global-map (kbd "A-e n") 'wrapped-write-file)
-(define-key global-map (kbd "A-e m") 'wrapped-kill-buffer)
+(define-key global-map (kbd "A-e .") 'wrapped-kill-buffer)
 (define-key global-map (kbd "A-e H") 'ido-dired)
 
-(define-key global-map (kbd "A-w A-m") 'save-and-kill-buffer-and-window)
-(define-key global-map (kbd "A-w m") 'kill-buffer-and-window)
+(define-key global-map (kbd "A-w A-.") 'save-and-kill-buffer-and-window)
+(define-key global-map (kbd "A-w .") 'kill-buffer-and-window)
 
 (define-key global-map (kbd "A-e Y") 
   '(lambda () (interactive) (dired user-emacs-directory)))
@@ -234,7 +236,7 @@
 (define-key global-map (kbd "A-e D") 'ediff-buffers3)
 
 (define-key global-map (kbd "A-q") 'keyboard-escape-quit)
-(define-key global-map (kbd "A-r") 'execute-extended-command)
+(define-key global-map (kbd "A-#") 'execute-extended-command)
 
 (define-key global-map (kbd "A-x n") 'launch-nautilus-here)
 (define-key global-map (kbd "A-x t") 'launch-terminal-here)
@@ -244,9 +246,9 @@
 (define-key global-map (kbd "A-e <SPC>") 'compile-with-query)
 (define-key global-map (kbd "A-e c") 'set-console-window)
 (define-key global-map (kbd "A-e g") 'wrapped-debug)
-(define-key global-map (kbd "A-e A-.") 'next-error)
-(define-key global-map (kbd "A-e A-,") 'previous-error)
-(define-key global-map (kbd "A-e ,") 'first-error)
+(define-key global-map (kbd "A-e A-8") 'next-error)
+(define-key global-map (kbd "A-e A-7") 'previous-error)
+(define-key global-map (kbd "A-e 7") 'first-error)
 
 
 ;;; END

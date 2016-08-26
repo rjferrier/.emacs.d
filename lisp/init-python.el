@@ -1,9 +1,5 @@
-
-
-
-(setq
- python-shell-interpreter "ipython")
-
+(setq python-shell-interpreter "ipython"
+ python-shell-interpreter-args "--simple-prompt -i")
 
 (eval-after-load "python"
   '(progn
