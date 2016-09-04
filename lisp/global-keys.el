@@ -89,10 +89,10 @@
 (define-key global-map (kbd "A-)") 'pop-tag-mark)
 
 ;; symbols
-(define-key global-map (kbd "A-p") 'wrapped-next-symbol)
-(define-key global-map (kbd "A-P") 'wrapped-prev-symbol)
-(define-key global-map (kbd "A-s A-p") 'highlight-symbol-at-point)
-(define-key global-map (kbd "A-s p") 'highlight-symbol-query-replace)
+(define-key global-map (kbd "A-d A-h") 'wrapped-next-symbol)
+(define-key global-map (kbd "A-d A-y") 'wrapped-prev-symbol)
+(define-key global-map (kbd "A-d h") 'highlight-symbol-at-point)
+(define-key global-map (kbd "A-d H") 'highlight-symbol-query-replace)
 
 
 ;; useful messages

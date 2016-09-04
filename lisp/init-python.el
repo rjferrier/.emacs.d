@@ -1,5 +1,6 @@
-(setq python-shell-interpreter "ipython"
- python-shell-interpreter-args "--simple-prompt -i")
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args "--simple-prompt -i --pylab")
 
 (eval-after-load "python"
   '(progn
@@ -8,9 +9,9 @@
      (setq python-fill-docstring-style 'symmetric)
 
      ;; local key bindings
-     (define-key python-mode-map (kbd "A-s <A-SPC>")
-       'python-shell-send-buffer)
-     ))
+     (define-key python-mode-map (kbd "A-w <A-SPC>")
+       'python-shell-send-buffer)))
+
 
 (add-hook
  'python-mode-hook
