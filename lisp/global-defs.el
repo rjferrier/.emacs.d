@@ -352,6 +352,49 @@ name of the buffer is xyz or *xyz-contents*, returns xyz."
   (message (match-string 1)))
 
 
+;;; ELISP EVALUATION
+
+(defvar elisp-foo-body nil)
+
+(defun elisp-define-foo ()
+  "Defines or resets a test snippet called elisp-define-foo."
+  (interactive)
+  (message
+   (if (use-region-p)
+       (let ((str (buffer-substring-no-properties
+		   (region-beginning) (region-end))))
+	 (with-temp-buffer
+	   (insert "(defun elisp-foo () (interactive) " str " )")
+	   (eval-current-buffer)
+	   (setq elisp-foo-body str))
+	 "Stored this snippet for execution.")
+     (progn
+       (setq elisp-foo-body nil)
+       "Reset snippet execution.")
+     )))
+
+(defun elisp-evaluate-dwim ()
+  "If elisp-foo-body has been defined, evaluates elisp-foo and
+prints the result if it is a string.  Otherwise, evaluates the current
+region or buffer."
+  (interactive)
+  (let ((result
+	 (if elisp-foo-body
+	     (progn
+	       (elisp-foo))
+	   (if (use-region-p)
+	       (let ((str (buffer-substring-no-properties
+			   (region-beginning) (region-end))))
+		 (with-temp-buffer
+		   (insert str)
+		   (eval-current-buffer)))
+	     (progn
+	       (eval-current-buffer)
+	       "Evaluated current buffer")))))
+    (when (stringp result)
+      (message result))))
+
+
 ;;; MISC
 
 (defun copy-buffer-file-name (&optional with-path)

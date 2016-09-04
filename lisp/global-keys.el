@@ -227,6 +227,11 @@
 ;; code elements
 (define-key global-map (kbd "<A-return>") 'contents)
 
+;; elisp evaluation and command execution
+(define-key global-map (kbd "A-d <A-SPC>") 'elisp-evaluate-dwim)
+(define-key global-map (kbd "A-d <SPC>") 'elisp-define-foo)
+(define-key global-map (kbd "A-s <A-SPC>") 'execute-extended-command)
+
 ;; misc
 (define-key global-map (kbd "A-e f") 'new-frame)
 (define-key global-map (kbd "A-e s") 'multi-eshell)
@@ -236,7 +241,7 @@
 (define-key global-map (kbd "A-e D") 'ediff-buffers3)
 
 (define-key global-map (kbd "A-q") 'keyboard-escape-quit)
-(define-key global-map (kbd "A-#") 'execute-extended-command)
+
 
 (define-key global-map (kbd "A-x n") 'launch-nautilus-here)
 (define-key global-map (kbd "A-x t") 'launch-terminal-here)
