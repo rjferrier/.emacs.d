@@ -10,4 +10,3 @@
      (set (make-local-variable 'level-3-regexp) "^ *\\((.*\\)")
      (set (make-local-variable 'contents-level-regexp) level-2-regexp)
      )))
-

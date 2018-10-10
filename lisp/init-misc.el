@@ -1,12 +1,13 @@
 
+
 ;;; DIRED
 
 (eval-after-load "dired"
     '(progn
        (define-key dired-mode-map (kbd "A-e A-7") 'dired-do-isearch-regexp)
-       (define-key dired-mode-map (kbd "A-s A-i") 'dired-up-directory)
-       (define-key dired-mode-map (kbd "A-s A-j") 'dired-prev-dirline)
-       (define-key dired-mode-map (kbd "A-s A-l") 'dired-next-dirline)
+       (define-key dired-mode-map (kbd "A-f A-i") 'dired-up-directory)
+       (define-key dired-mode-map (kbd "A-f A-j") 'dired-prev-dirline)
+       (define-key dired-mode-map (kbd "A-f A-l") 'dired-next-dirline)
        ))
 
 

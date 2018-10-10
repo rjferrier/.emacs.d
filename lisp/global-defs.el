@@ -139,6 +139,13 @@
     (cua-set-mark))
   (end-of-buffer))
 
+(defun push-mark-no-activate ()
+  "Pushes `point' to `mark-ring' and does not activate the region
+   Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled
+   (source: https://www.masteringemacs.org/article/fixing-mark-commands-transient-mark-mode)"
+  (interactive)
+  (push-mark (point) t nil)
+  (message "Mark pushed to ring"))
 
 
 ;;; TEXT EDITING
@@ -154,18 +161,6 @@
   (next-line)
   (join-line))
 
-(defvar fill-column-1 80)
-(defvar fill-column-2 72)
-(defun toggle-fill-column ()
-  (interactive)
-  (if (eq fill-column fill-column-1)
-      (progn
-	(setq fill-column fill-column-2)
-	(message (format "fill-column set to %d" fill-column)))
-    (progn
-      (setq fill-column fill-column-1)
-      (message (format "fill-column set to %d" fill-column)))))
-
 ;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
 (defun unfill-paragraph (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."
@@ -174,6 +169,11 @@
 	;; This would override `fill-column' if it's an integer.
 	(emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
+
+(defun indent-and-next-line ()
+  (interactive)
+  (indent-according-to-mode)
+  (next-line))
 
 ;;; COMPILATION AND DEBUGGING
 
@@ -424,6 +424,11 @@ region or buffer."
   (message (concat "Generating tags in " project-directory))
   (shell-command (concat "ctags -eR " project-directory)))
 
+(require 'multi-eshell)
+(require 'whole-line-or-region)
+(require 'wrapped-windmove)
+(require 'wrapped-highlight-symbol)
+(require 'zoom-frm)
 
 ;;; END
 (provide 'global-defs)

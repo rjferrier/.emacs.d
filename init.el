@@ -2,6 +2,13 @@
 ;;; FIRST THINGS FIRST
 
 ;; add directories to the load path
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq user-lisp-directory (concat user-emacs-directory "/lisp/"))
 (add-to-list 'load-path user-lisp-directory)
 (let ((default-directory user-emacs-directory))
@@ -43,6 +50,15 @@
 (when (file-exists-p env-file)
    (load env-file))
 (setenv "PYTHONPATH" (substitute-in-file-name "$HOME"))
+
+;; backup file settings
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+  backup-by-copying t    ; Don't delink hardlinks
+  version-control t      ; Use version numbers on backups
+  delete-old-versions t  ; Automatically delete excess backups
+  kept-new-versions 20   ; how many of the newest versions to keep
+  kept-old-versions 5    ; and how many of the old
+  )
 
 ;; Windows-specific
 (defconst in-win32
@@ -175,3 +191,7 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 
+;;; BACK-BUTTON
+
+(require 'back-button)
+(back-button-mode 1)
